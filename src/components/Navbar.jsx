@@ -28,7 +28,7 @@ const Navbar = () => {
   });
 
   const navItems = [
-    { label: "Projects", window: "finder" },
+    { label: "Projects", window: "safari" },
     { label: "Contact", window: "contact" },
     { label: "Resume", window: "resume" },
   ];
