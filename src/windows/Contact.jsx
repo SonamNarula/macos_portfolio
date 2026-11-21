@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Copy, Check, Mail, Github, Linkedin, Code2, Trophy, ExternalLink } from "lucide-react";
-import WindowWrapper from "#hoc/WindowWrapper";
+import WindowWrapper from "../components/WindowWrapper";
 import WindowControls from "#components/WindowControls";
 
 const EMAIL = "sonamnarula2108@gmail.com";

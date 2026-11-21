@@ -1,5 +1,5 @@
 
-import WindowWrapper from "#hoc/WindowWrapper";
+import WindowWrapper from "../components/WindowWrapper";
 import WindowControls from "#components/WindowControls";
 import { blogPosts } from "#constants/index.js";
 import { ExternalLink, Globe, Lock, Search } from "lucide-react";
