@@ -21,6 +21,7 @@ const dockApps = [
     { id: "trash", name: "Trash", icon: "trash.png", canOpen: false },
 ];
 
+// TECH STACK
 const techStack = [
     {
         category: "Languages",
@@ -32,11 +33,11 @@ const techStack = [
     },
     {
         category: "Backend",
-        items: ["Python", "FastAPI", "REST APIs"],
+        items: ["Python", "FastAPI", "REST APIs", "Node.js", "Express"],
     },
     {
         category: "AI / ML",
-        items: ["Generative AI", "LLMs", "RAG", "LangChain"],
+        items: ["Generative AI", "LLMs", "RAG", "LangChain", "Hugging Face"],
     },
     {
         category: "Tools",
@@ -48,6 +49,7 @@ const techStack = [
     },
 ];
 
+// SOCIAL LINKS
 const socials = [
     {
         id: 1,
@@ -61,7 +63,7 @@ const socials = [
         text: "LinkedIn",
         icon: "/icons/linkedin.svg",
         bg: "#0A66C2",
-        link: "https://www.linkedin.com/",
+        link: "https://www.linkedin.com/in/sonamnarula",
     },
     {
         id: 3,
@@ -72,33 +74,39 @@ const socials = [
     },
 ];
 
+// PROJECTS FOR SAFARI
 const blogPosts = [
     {
         id: 1,
         date: "2026",
-        title:
-            "HireLens — A full-stack AI-powered job preparation platform.",
+        title: "HireLens — AI-powered career preparation platform.",
         image: "/images/project-1.png",
-        link: "https://github.com/SonamNarula",
+        link: "https://github.com/SonamNarula/hirelens-nexus",
     },
     {
         id: 2,
         date: "2026",
-        title:
-            "Trackify — A project focused on tracking and organising information.",
+        title: "Trackify — Student productivity and placement tracker.",
         image: "/images/project-2.png",
-        link: "https://github.com/SonamNarula",
+        link: "https://github.com/SonamNarula/Trackify-college-minor-project",
     },
     {
         id: 3,
         date: "2026",
-        title:
-            "NeuroNews — Exploring AI and intelligent news experiences.",
+        title: "NeuroNews — AI-focused news experience.",
         image: "/images/project-3.png",
-        link: "https://github.com/SonamNarula",
+        link: "https://github.com/SonamNarula?tab=repositories",
+    },
+    {
+        id: 4,
+        date: "2026",
+        title: "CodeFusion — Real-time collaborative code editor.",
+        image: "/images/gal4.png",
+        link: "https://github.com/SonamNarula/CodeFusion-a-collaborative-real-time-code-editor",
     },
 ];
 
+// PHOTOS APP
 const photosLinks = [
     { id: 1, icon: "/icons/gicon1.svg", title: "Library" },
     { id: 2, icon: "/icons/gicon2.svg", title: "Memories" },
@@ -114,13 +122,30 @@ const gallery = [
     { id: 4, img: "/images/gal4.png" },
 ];
 
-const projectFolder = (id, name, description, image, position) => ({
+// PROJECT FOLDER GENERATOR
+const projectFolder = (
+    id,
+    name,
+    description,
+    image,
+    position,
+    github,
+    techStack,
+    live = null
+) => ({
     id,
     name,
     icon: "/images/folder.png",
     kind: "folder",
     position,
     windowPosition: position,
+
+    description,
+    imageUrl: image,
+    github,
+    techStack,
+    live,
+
     children: [
         {
             id: id * 10 + 1,
@@ -128,9 +153,12 @@ const projectFolder = (id, name, description, image, position) => ({
             icon: "/images/txt.png",
             kind: "file",
             fileType: "txt",
-            position: "top-5 left-10",
             subtitle: name,
             description,
+            github,
+            techStack,
+            live,
+            imageUrl: image,
         },
         {
             id: id * 10 + 2,
@@ -138,69 +166,90 @@ const projectFolder = (id, name, description, image, position) => ({
             icon: "/images/image.png",
             kind: "file",
             fileType: "img",
-            position: "top-32 left-10",
             imageUrl: image,
         },
     ],
 });
 
+// PROJECTS FOLDER
 const WORK_LOCATION = {
     id: 1,
     type: "work",
     name: "Projects",
     icon: "/icons/work.svg",
     kind: "folder",
+
     children: [
         projectFolder(
             11,
             "HireLens",
             [
-                "A production-oriented full-stack GenAI job preparation application.",
-                "Designed to help users prepare for technical interviews with AI-powered assistance.",
-                "Built as a practical exploration of full-stack development and Generative AI.",
+                "HireLens is a full-stack, resume-aware AI workspace for role-specific interview preparation.",
+                "Upload your resume and provide a target job description to generate a structured preparation report.",
+                "Features include role-match insights, skill-gap analysis, technical and behavioural interview questions, and a day-wise preparation plan.",
+                "Built with a focus on AI reliability, authentication, document processing and persistent reports.",
             ],
             "/images/project-1.png",
-            "top-10 left-5"
+            "top-10 left-5",
+            "https://github.com/SonamNarula/hirelens-nexus",
+            ["React 19", "Node.js", "Express", "MongoDB", "Gemini AI", "JWT"]
         ),
+
         projectFolder(
             12,
             "Trackify",
             [
-                "A web application built with React, TypeScript and Vite.",
-                "Focused on organising and tracking information through a clean interface.",
+                "Trackify is a student productivity and placement tracking dashboard.",
+                "It brings tasks, study hours, DSA progress and placement applications into one workspace.",
+                "Includes a study tracker with streaks, task manager, placement tracker, analytics dashboard and a rule-based productivity coach.",
+                "The application uses Firebase Authentication and local persistence for user data.",
             ],
             "/images/project-2.png",
-            "top-10 left-40"
+            "top-10 left-40",
+            "https://github.com/SonamNarula/Trackify-college-minor-project",
+            ["React", "TypeScript", "Vite", "Chart.js", "Firebase"],
+            "https://trackify.wasmer.app"
         ),
+
         projectFolder(
             13,
             "NeuroNews",
             [
-                "An AI-focused news project exploring intelligent information experiences.",
-                "Part of my work exploring modern AI and application development.",
+                "NeuroNews is an AI-focused project exploring intelligent news and information experiences.",
+                "It is part of my exploration of Artificial Intelligence and modern application development.",
+                "More project details and implementation documentation will be added here.",
             ],
             "/images/project-3.png",
-            "top-40 left-5"
+            "top-40 left-5",
+            "https://github.com/SonamNarula?tab=repositories",
+            ["AI / ML", "Application Development"]
         ),
+
         projectFolder(
             14,
             "CodeFusion",
             [
-                "A university major project.",
-                "A collaborative software project documented through a complete project report.",
+                "CodeFusion is a browser-based real-time collaborative coding workspace.",
+                "Multiple users can join a room, edit shared files, see live presence and cursors, execute supported code and communicate in one workspace.",
+                "Its collaboration layer uses Yjs CRDT to synchronize concurrent edits.",
+                "Features include Monaco Editor, multi-file projects, browser-based execution, live preview, room chat and shared notes.",
             ],
             "/images/gal4.png",
-            "top-40 left-40"
+            "top-40 left-40",
+            "https://github.com/SonamNarula/CodeFusion-a-collaborative-real-time-code-editor",
+            ["React", "Vite", "Node.js", "Yjs CRDT", "Monaco Editor", "WebSocket"]
         ),
     ],
 };
 
+// ABOUT ME
 const ABOUT_LOCATION = {
     id: 2,
     type: "about",
     name: "About Me",
     icon: "/icons/info.svg",
     kind: "folder",
+
     children: [
         {
             id: 21,
@@ -220,12 +269,14 @@ const ABOUT_LOCATION = {
     ],
 };
 
+// EXPERIENCE
 const EXPERIENCE_LOCATION = {
     id: 3,
     type: "experience",
     name: "Experience",
     icon: "/icons/work.svg",
     kind: "folder",
+
     children: [
         {
             id: 31,
@@ -234,6 +285,7 @@ const EXPERIENCE_LOCATION = {
             kind: "file",
             fileType: "txt",
             position: "top-5 left-10",
+            subtitle: "DSA Wing Captain",
             description: [
                 "Captain — DSA Wing, DevCrest JU.",
                 "Working with peers on problem-solving, DSA learning and mentoring.",
@@ -246,6 +298,7 @@ const EXPERIENCE_LOCATION = {
             kind: "file",
             fileType: "txt",
             position: "top-32 left-10",
+            subtitle: "Incubation Ambassador",
             description: [
                 "Incubation Ambassador at JECRC Incubation Centre.",
                 "Supporting student innovation and campus initiatives.",
@@ -258,6 +311,7 @@ const EXPERIENCE_LOCATION = {
             kind: "file",
             fileType: "txt",
             position: "top-60 left-10",
+            subtitle: "Campus Ambassador",
             description: [
                 "Campus Ambassador at TakeUForward.",
                 "Helping connect students with learning resources and the DSA community.",
@@ -266,12 +320,14 @@ const EXPERIENCE_LOCATION = {
     ],
 };
 
+// RESUME
 const RESUME_LOCATION = {
     id: 4,
     type: "resume",
     name: "Resume",
     icon: "/icons/file.svg",
     kind: "folder",
+
     children: [
         {
             id: 41,
@@ -283,6 +339,7 @@ const RESUME_LOCATION = {
     ],
 };
 
+// TRASH
 const TRASH_LOCATION = {
     id: 5,
     type: "trash",
@@ -292,6 +349,7 @@ const TRASH_LOCATION = {
     children: [],
 };
 
+// ALL FINDER LOCATIONS
 export const locations = {
     work: WORK_LOCATION,
     about: ABOUT_LOCATION,
@@ -300,6 +358,7 @@ export const locations = {
     trash: TRASH_LOCATION,
 };
 
+// WINDOW SETTINGS
 const INITIAL_Z_INDEX = 1000;
 
 const WINDOW_CONFIG = {

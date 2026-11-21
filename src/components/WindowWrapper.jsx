@@ -1,9 +1,8 @@
-
 import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 import { useGSAP } from "@gsap/react";
-import useWindowStore from "../store/window";
+import useWindowStore from "../store/window.js";
 
 gsap.registerPlugin(Draggable);
 
@@ -15,23 +14,30 @@ const WindowWrapper = (Component, windowKey) => {
             (state) => state.windows[windowKey]
         );
 
-        const focusWindow = useWindowStore((state) => state.focusWindow);
+        const focusWindow = useWindowStore(
+            (state) => state.focusWindow
+        );
 
         const isOpen = windowState?.isOpen ?? false;
         const isMinimized = windowState?.isMinimized ?? false;
+        const isMaximized = windowState?.isMaximized ?? false;
         const zIndex = windowState?.zIndex ?? 0;
 
+        // Show or hide window
         useLayoutEffect(() => {
             const element = windowRef.current;
+
             if (!element) return;
 
             element.style.display =
                 isOpen && !isMinimized ? "block" : "none";
         }, [isOpen, isMinimized]);
 
+        // Opening animation
         useGSAP(
             () => {
                 const element = windowRef.current;
+
                 if (!element || !isOpen || isMinimized) return;
 
                 gsap.fromTo(
@@ -50,39 +56,65 @@ const WindowWrapper = (Component, windowKey) => {
                     }
                 );
             },
-            { dependencies: [isOpen, isMinimized], scope: windowRef }
+            {
+                dependencies: [isOpen, isMinimized],
+                scope: windowRef,
+            }
         );
 
+        // Drag functionality
         useGSAP(
             () => {
                 const element = windowRef.current;
-                if (!element) return;
+
+                if (!element || !isOpen || isMinimized) return;
+
+                const header =
+                    element.querySelector("#window-header") || element;
 
                 const [instance] = Draggable.create(element, {
-                    trigger: element.querySelector("#window-header") || element,
-                    onPress: () => focusWindow(windowKey),
+                    trigger: header,
                     bounds: "main",
+
+                    onPress: () => {
+                        focusWindow(windowKey);
+                    },
                 });
 
-                return () => instance.kill();
+                return () => {
+                    instance?.kill();
+                };
             },
-            { scope: windowRef }
+            {
+                dependencies: [isOpen, isMinimized],
+                scope: windowRef,
+            }
         );
 
         return (
             <section
                 id={windowKey}
                 ref={windowRef}
-                style={{ zIndex }}
-                className="absolute"
+                style={{
+                    zIndex,
+                    display: isOpen && !isMinimized ? "block" : "none",
+                }}
+                className={`absolute ${
+                    isMaximized ? "inset-0" : ""
+                }`}
                 onMouseDown={() => focusWindow(windowKey)}
             >
-                <Component {...props} />
+                <Component
+                    {...props}
+                    data={windowState?.data ?? null}
+                />
             </section>
         );
     };
 
-    WrappedComponent.displayName = `WindowWrapper(${Component.displayName || Component.name || windowKey})`;
+    WrappedComponent.displayName = `WindowWrapper(${
+        Component.displayName || Component.name || windowKey
+    })`;
 
     return WrappedComponent;
 };

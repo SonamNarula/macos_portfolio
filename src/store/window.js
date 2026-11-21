@@ -6,22 +6,20 @@ const useWindowStore = create((set) => ({
     activeWindow: null,
     highestZIndex: 100,
 
-    // Open a new window or restore an existing one
     openWindow: (windowKey, data = null) =>
         set((state) => {
             const nextZIndex = state.highestZIndex + 1;
-            const previous = state.windows[windowKey] || {};
 
             return {
                 windows: {
                     ...state.windows,
                     [windowKey]: {
-                        ...previous,
+                        ...state.windows[windowKey],
                         isOpen: true,
                         isMinimized: false,
-                        isMaximized: previous.isMaximized || false,
+                        isMaximized: false,
                         zIndex: nextZIndex,
-                        ...(data !== null ? { data } : {}),
+                        data,
                     },
                 },
                 activeWindow: windowKey,
@@ -29,11 +27,9 @@ const useWindowStore = create((set) => ({
             };
         }),
 
-    // Close window
     closeWindow: (windowKey) =>
         set((state) => {
             const updatedWindows = { ...state.windows };
-
             delete updatedWindows[windowKey];
 
             return {
@@ -43,56 +39,39 @@ const useWindowStore = create((set) => ({
             };
         }),
 
-    // Minimize window
     minimizeWindow: (windowKey) =>
-        set((state) => {
-            const current = state.windows[windowKey];
-
-            if (!current) return state;
-
-            return {
-                windows: {
-                    ...state.windows,
-                    [windowKey]: {
-                        ...current,
-                        isMinimized: true,
-                    },
+        set((state) => ({
+            windows: {
+                ...state.windows,
+                [windowKey]: {
+                    ...state.windows[windowKey],
+                    isMinimized: true,
                 },
-                activeWindow:
-                    state.activeWindow === windowKey ? null : state.activeWindow,
-            };
-        }),
+            },
+            activeWindow:
+                state.activeWindow === windowKey ? null : state.activeWindow,
+        })),
 
-    // Maximize / restore window size
     maximizeWindow: (windowKey) =>
-        set((state) => {
-            const current = state.windows[windowKey];
-
-            if (!current) return state;
-
-            return {
-                windows: {
-                    ...state.windows,
-                    [windowKey]: {
-                        ...current,
-                        isMaximized: !current.isMaximized,
-                    },
+        set((state) => ({
+            windows: {
+                ...state.windows,
+                [windowKey]: {
+                    ...state.windows[windowKey],
+                    isMaximized: !state.windows[windowKey]?.isMaximized,
                 },
-            };
-        }),
+            },
+        })),
 
-    // Bring window to front
     focusWindow: (windowKey) =>
         set((state) => {
             const nextZIndex = state.highestZIndex + 1;
-            const previous = state.windows[windowKey] || {};
 
             return {
                 windows: {
                     ...state.windows,
                     [windowKey]: {
-                        ...previous,
-                        isOpen: true,
+                        ...state.windows[windowKey],
                         isMinimized: false,
                         zIndex: nextZIndex,
                     },
