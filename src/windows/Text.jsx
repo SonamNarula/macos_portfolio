@@ -20,15 +20,15 @@ const Text = ({ data }) => {
   const paragraphs = Array.isArray(description) ? description : [description];
 
   return (
-    <div className="flex h-full w-full min-w-0 max-w-full flex-col overflow-hidden rounded-xl bg-white text-gray-800 shadow-2xl">
+    <div className="relative flex h-full w-full min-w-0 max-w-full flex-col overflow-hidden rounded-xl bg-white text-gray-800 shadow-2xl">
       <header id="window-header" className="flex h-14 shrink-0 items-center justify-between border-b border-gray-200 bg-gray-50 px-3 sm:px-4">
         <div className="w-16 shrink-0"><WindowControls target="txtfile" /></div>
         <h2 className="min-w-0 flex-1 truncate px-2 text-center text-sm font-semibold text-gray-700">{title}</h2>
         <div className="w-16 shrink-0" />
       </header>
 
-      <main className="min-h-0 w-full min-w-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain">
-        <div className="mx-auto w-full min-w-0 max-w-3xl px-4 py-6 sm:px-8 sm:py-9">
+      <div className="absolute inset-x-0 bottom-0 top-14 overflow-y-auto overflow-x-hidden overscroll-contain" style={{ WebkitOverflowScrolling: "touch" }}>
+        <div className="mx-auto block w-full min-w-0 max-w-3xl px-4 py-6 sm:px-8 sm:py-9">
           {data?.imageUrl && (
             <div className="mb-7 w-full overflow-hidden rounded-2xl border border-gray-200 bg-slate-950">
               <img src={data.imageUrl} alt={title} className="h-40 w-full object-cover sm:h-56" />
@@ -125,7 +125,7 @@ const Text = ({ data }) => {
             </section>
           )}
         </div>
-      </main>
+      </div>
     </div>
   );
 };
