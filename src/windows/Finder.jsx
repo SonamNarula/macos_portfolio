@@ -292,6 +292,8 @@ const Finder = () => {
                           <FileText size={36} className="text-red-500" />
                         ) : item.fileType === "img" ? (
                           <FileImage size={36} className="text-blue-500" />
+                        ) : item.fileType === "txt" ? (
+                          <FileText size={36} className="text-blue-500" />
                         ) : (
                           <File size={36} className="text-blue-500" />
                         )}
