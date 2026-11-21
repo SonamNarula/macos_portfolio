@@ -193,7 +193,7 @@ const WORK_LOCATION = {
         "Implementation details pending source-repository verification",
       ],
       techStack: ["Technology details not yet verified"],
-      github: "https://github.com/SonamNarula?tab=repositories",
+      github: null,
     }),
 
     projectFolder({
@@ -299,6 +299,7 @@ const EXPERIENCE_LOCATION = {
       fileType: "txt",
       subtitle: "DSA Wing Captain",
       category: "Leadership / Mentoring",
+      imageUrl: "/images/experience-devcrest.svg",
       role: "Captain — DSA Wing",
       organization: "DevCrest JU",
       description: [
@@ -321,6 +322,7 @@ const EXPERIENCE_LOCATION = {
       fileType: "txt",
       subtitle: "Incubation Ambassador",
       category: "Campus / Innovation",
+      imageUrl: "/images/experience-incubation.svg",
       role: "Incubation Ambassador",
       organization: "JECRC Incubation Centre",
       description: [
@@ -342,6 +344,7 @@ const EXPERIENCE_LOCATION = {
       fileType: "txt",
       subtitle: "Campus Ambassador",
       category: "Community",
+      imageUrl: "/images/experience-tuf.svg",
       role: "Campus Ambassador",
       organization: "TakeUForward",
       description: [
