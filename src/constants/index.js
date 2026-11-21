@@ -299,7 +299,7 @@ const EXPERIENCE_LOCATION = {
       fileType: "txt",
       subtitle: "DSA Wing Captain",
       category: "Leadership / Mentoring",
-      imageUrl: "/images/experience-devcrest.svg",
+      imageUrl: "/images/devcrest.png",
       role: "Captain — DSA Wing",
       organization: "DevCrest JU",
       description: [
@@ -322,7 +322,7 @@ const EXPERIENCE_LOCATION = {
       fileType: "txt",
       subtitle: "Incubation Ambassador",
       category: "Campus / Innovation",
-      imageUrl: "/images/experience-incubation.svg",
+      imageUrl: "/images/jic.png",
       role: "Incubation Ambassador",
       organization: "JECRC Incubation Centre",
       description: [
@@ -344,7 +344,7 @@ const EXPERIENCE_LOCATION = {
       fileType: "txt",
       subtitle: "Campus Ambassador",
       category: "Community",
-      imageUrl: "/images/experience-tuf.svg",
+      imageUrls: ["/images/tuf1.png", "/images/tuf%202.png"],
       role: "Campus Ambassador",
       organization: "TakeUForward",
       description: [
