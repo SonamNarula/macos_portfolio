@@ -138,6 +138,55 @@ const WORK_LOCATION = {
     }),
 
     projectFolder({
+      id: 15,
+      name: "AcornFolio",
+      category: "AI / FinTech",
+      description: [
+        "AcornFolio — Mutual Fund Co-Pilot is an AI-powered mutual fund dashboard designed for Indian retail investors. It helps make the hidden costs and trade-offs in mutual fund investing easier to understand, especially the difference between Regular and Direct plans.",
+        "The dashboard helps users inspect expense-ratio leakage, compare Direct and Regular plan outcomes, understand portfolio overlap and risk, and evaluate switching decisions alongside capital-gains tax, exit load and holding periods.",
+        "It brings fund discovery, portfolio analysis, SIP / SWP / STP planning, XIRR, tax and exit-load calculations, savings estimates, rebalancing and stress-testing tools into one experience. Visual dashboards, charts and alerts make the results easier to explore.",
+        "The AI Co-Pilot is designed to explain results using portfolio and retrieved fund context. LanceDB semantic search supplies relevant fund information, while deterministic code handles important financial calculations instead of asking an LLM to guess numerical results.",
+        "The project uses a Next.js App Router architecture with API routes, Prisma and SQLite. The README describes it as a hackathon/demo-oriented educational decision-support tool, not certified financial advice."
+      ],
+      highlights: [
+        "Direct vs Regular mutual fund plan comparison and expense-ratio leakage analysis",
+        "Portfolio analysis covering allocation, risk, overlap, sector exposure and benchmark comparison",
+        "Calculators for SIP, SWP, STP, XIRR, tax, exit load and future-value differences",
+        "Switching trade-off analysis that considers tax and exit-load implications",
+        "AI Co-Pilot that explains portfolio results using retrieved fund context",
+        "LanceDB semantic retrieval for relevant mutual fund information",
+        "Charts, rankings, heatmaps, alerts, watchlists and portfolio tools"
+      ],
+      architecture: [
+        "Next.js App Router with React + TypeScript",
+        "Next.js API routes for application backend functionality",
+        "Prisma ORM with SQLite for structured fund and portfolio data",
+        "Zustand for client-side state management",
+        "LanceDB vector search for semantic fund retrieval",
+        "AI chat integration with local Ollama / ZAI fallback options",
+        "Recharts for portfolio and fund visualizations"
+      ],
+      techStack: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Framer Motion",
+        "Zustand",
+        "Next.js API Routes",
+        "Prisma ORM",
+        "SQLite",
+        "LanceDB",
+        "Recharts",
+        "AI Chat API",
+        "Ollama",
+        "ZAI SDK"
+      ],
+      github: "https://github.com/SonamNarula/AcornFolio"
+    }),
+
+    projectFolder({
       id: 12,
       name: "Trackify",
       category: "Productivity / Analytics",
@@ -303,15 +352,17 @@ const EXPERIENCE_LOCATION = {
       role: "Captain — DSA Wing",
       organization: "DevCrest JU",
       description: [
-        "Serving as Captain of the DSA Wing at DevCrest JU, a student developer community at JECRC University.",
-        "The role centres on problem-solving, Data Structures and Algorithms, and helping peers build stronger fundamentals through collaborative learning and mentoring.",
-        "I bring a pattern-oriented approach to DSA: understanding constraints, comparing brute-force and optimized solutions, explaining trade-offs, and practising implementation and dry runs.",
+        "My journey with DevCrest JU began unusually early. I was one of just 3–4 second-year students selected by the seniors to help build the community. We were not simply joining an already-established club; we got to be part of shaping what the community would become.",
+        "That experience gave me a close look at how a student tech community is built from the ground up: working with seniors and peers, taking ownership, figuring things out as a team and creating an environment where students could learn and grow together.",
+        "I went on to serve as Captain of the DSA Wing. The work brought me closer to the part of computer science I enjoy most—Data Structures and Algorithms, competitive problem-solving, breaking down patterns and helping other students become more confident with difficult problems.",
+        "More than a title, DevCrest was a hands-on lesson in initiative, responsibility, collaboration and community building. I got to contribute while learning how much effort goes into turning a group of interested students into a genuine technical community."
       ],
       highlights: [
-        "DSA learning and problem-solving",
-        "Peer mentoring and concept explanation",
-        "Brute-force to optimized reasoning",
-        "Pattern-based practice and technical discussions",
+        "Selected by seniors as one of 3–4 second-year students to help build the DevCrest JU community",
+        "Took on leadership responsibility as Captain of the DSA Wing",
+        "Contributed to building a student space centred on DSA and problem-solving",
+        "Worked with seniors and peers to grow the community and its learning culture",
+        "Helped make complex DSA concepts and problem-solving patterns more approachable"
       ],
     },
     {
@@ -326,14 +377,16 @@ const EXPERIENCE_LOCATION = {
       role: "Incubation Ambassador",
       organization: "JECRC Incubation Centre",
       description: [
-        "Incubation Ambassador at JECRC Incubation Centre.",
-        "The ambassador role connects me with the university's student innovation and entrepreneurship ecosystem.",
-        "I am interested in helping students discover incubation initiatives, innovation opportunities and the support available to turn early ideas into projects.",
+        "Being an Incubation Ambassador at JECRC Incubation Centre gave me a chance to experience the entrepreneurial side of campus life up close. I got to meet several well-known entrepreneurs and investors—the 'Sharks'—with Namita Thapar being the one I did not get to meet. Those interactions exposed me to different ways of thinking about ideas, execution, business and ambition.",
+        "One of my most memorable experiences was helping organise an event where Mr. Ashneer Grover was the guest. Being part of bringing an event like that together taught me a lot beyond the stage itself: the preparation, coordination, teamwork and responsibility that go into making a large event happen.",
+        "The experience helped me look beyond technology alone. I learned to pay attention to how people communicate ideas, how businesses think about scale and execution, and how much planning sits behind a successful event. It remains one of my favourite experiences at JECRC."
       ],
       highlights: [
-        "Student-facing incubation ambassador role",
-        "Awareness of campus innovation initiatives",
-        "Connecting peers with the incubation ecosystem",
+        "Represented the JECRC Incubation Centre as an Incubation Ambassador",
+        "Met several prominent entrepreneurs and investors from the 'Sharks' community",
+        "Helped organise an event featuring Mr. Ashneer Grover as the guest",
+        "Learned first-hand about event preparation, coordination, teamwork and execution",
+        "Gained exposure to entrepreneurship, business thinking and turning ideas into action"
       ],
     },
     {
@@ -344,18 +397,21 @@ const EXPERIENCE_LOCATION = {
       fileType: "txt",
       subtitle: "Campus Ambassador",
       category: "Community",
-      imageUrls: ["/images/tuf1.png", "/images/tuf%202.png"],
-      role: "Campus Ambassador",
+      imageUrls: ["/images/tuf%201.png", "/images/tuf%202.png"],
+      role: "Campus Ambassador · Team Member (3 months)",
       organization: "TakeUForward",
       description: [
-        "Campus Ambassador for TakeUForward (TUF).",
-        "This role is connected to the student DSA and interview-preparation community, helping peers discover structured learning resources and problem-solving practice.",
-        "My focus is on making high-quality DSA preparation resources more visible and encouraging consistent learning.",
+        "TakeUForward has been one of the most meaningful parts of my DSA journey. I first knew the community through its learning resources and through Striver—someone I genuinely looked up to as 'the god of DSA'. Getting the opportunity to interact with him was a full-circle moment: from learning through his teaching to being part of the team behind the community.",
+        "I was part of the TakeUForward team for three months, where I got to understand the community from the inside and contribute as a Campus Ambassador. It was an opportunity to learn from people whose work had already influenced the way I approached Data Structures and Algorithms.",
+        "I also conducted DSA sessions for students at my college through online meets. Being able to share what I had learned, explain problem-solving approaches and help other students with their preparation made the experience even more special.",
+        "The best part was the journey itself—from being a learner inspired by TUF to interacting with Striver, becoming part of the team and taking DSA sessions for my own college community."
       ],
       highlights: [
-        "Campus ambassador representation",
-        "Promoting structured DSA learning resources",
-        "Encouraging peer participation in problem-solving",
+        "Interacted with Striver, whose DSA teaching had been a major learning influence",
+        "Worked as part of the TakeUForward team for three months",
+        "Represented TakeUForward as a Campus Ambassador",
+        "Conducted DSA learning sessions for college students through online meets",
+        "Helped bring structured DSA learning and problem-solving approaches to peers"
       ],
     },
   ],
@@ -393,6 +449,10 @@ export const locations = {
   experience: EXPERIENCE_LOCATION,
   resume: RESUME_LOCATION,
   trash: TRASH_LOCATION,
+  // Desktop project shortcuts open Finder directly inside each project folder.
+  codefusion: WORK_LOCATION.children.find((project) => project.name === "CodeFusion"),
+  acornfolio: WORK_LOCATION.children.find((project) => project.name === "AcornFolio"),
+  hirelens: WORK_LOCATION.children.find((project) => project.name === "HireLens"),
 };
 
 // Safari projects list: use the same verified project data without PNG previews.
