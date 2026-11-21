@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+<title id="title">JECRC Incubation Centre illustration</title><desc id="desc">Illustrative innovation and startup ecosystem banner, not an event photograph.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102c3b"/><stop offset=".58" stop-color="#176b78"/><stop offset="1" stop-color="#75a99a"/></linearGradient><linearGradient id="sun" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fde68a"/><stop offset="1" stop-color="#fb923c"/></linearGradient></defs>
+<rect width="1200" height="480" rx="32" fill="url(#bg)"/><circle cx="950" cy="240" r="190" fill="url(#sun)" opacity=".16"/><circle cx="950" cy="240" r="130" fill="none" stroke="#fde68a" stroke-width="2" opacity=".5"/>
+<g fill="none" stroke="#fde68a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M950 110c-68 0-116 50-116 112 0 41 23 68 48 91h136c25-23 48-50 48-91 0-62-48-112-116-112z"/><path d="M900 322h100M912 353h76M926 383h48"/><path d="M950 160v90M914 210l36 40 36-40"/></g>
+<g fill="#fde68a"><circle cx="790" cy="115" r="8"/><circle cx="1110" cy="120" r="7"/><circle cx="1090" cy="360" r="9"/></g>
+<text x="82" y="166" fill="#bbf7d0" font-family="Arial,sans-serif" font-size="26" font-weight="700" letter-spacing="7">CAMPUS INNOVATION ECOSYSTEM</text>
+<text x="78" y="260" fill="#fff" font-family="Arial,sans-serif" font-size="64" font-weight="700">JECRC Incubation</text>
+<text x="84" y="326" fill="#d1fae5" font-family="Arial,sans-serif" font-size="32">Incubation Ambassador · Ideas to Initiatives</text>
+<rect x="84" y="372" width="252" height="5" rx="3" fill="url(#sun)"/>
+</svg>
