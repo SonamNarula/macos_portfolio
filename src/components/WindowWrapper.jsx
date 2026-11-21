@@ -12,15 +12,13 @@ const WINDOW_SIZES = {
   imgfile: { width: 780, height: 650 },
 };
 
+// Resize only from the four small corners. Full-height edge handles
+// overlap the Safari scrollbar and make ordinary scrolling feel like resizing.
 const RESIZE_HANDLES = [
-  ["n", "inset-x-4 top-0 h-2 cursor-n-resize"],
-  ["s", "inset-x-4 bottom-0 h-2 cursor-s-resize"],
-  ["e", "right-0 inset-y-4 w-2 cursor-e-resize"],
-  ["w", "left-0 inset-y-4 w-2 cursor-w-resize"],
-  ["nw", "left-0 top-0 h-4 w-4 cursor-nwse-resize"],
-  ["ne", "right-0 top-0 h-4 w-4 cursor-nesw-resize"],
-  ["sw", "left-0 bottom-0 h-4 w-4 cursor-nesw-resize"],
-  ["se", "right-0 bottom-0 h-4 w-4 cursor-nwse-resize"],
+  ["nw", "left-0 top-0 h-3 w-3 cursor-nwse-resize"],
+  ["ne", "right-0 top-0 h-3 w-3 cursor-nesw-resize"],
+  ["sw", "left-0 bottom-0 h-3 w-3 cursor-nesw-resize"],
+  ["se", "right-0 bottom-0 h-3 w-3 cursor-nwse-resize"],
 ];
 
 const WindowWrapper = (Component, windowKey) => {
