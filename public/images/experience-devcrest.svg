@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+<title id="title">DevCrest DSA Wing illustration</title><desc id="desc">Illustrative dark blue code and problem-solving banner, not an event photograph.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#17164d"/><stop offset=".55" stop-color="#253d83"/><stop offset="1" stop-color="#1c8ea8"/></linearGradient><linearGradient id="glow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7dd3fc"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs>
+<rect width="1200" height="480" rx="32" fill="url(#bg)"/><circle cx="1010" cy="60" r="210" fill="#8b5cf6" opacity=".18"/><circle cx="1090" cy="390" r="260" fill="#38bdf8" opacity=".12"/>
+<g fill="none" stroke="url(#glow)" stroke-width="3" opacity=".8"><path d="M750 70h320v250H750z" opacity=".55"/><path d="M790 125l-42 36 42 36M865 125l42 36-42 36M830 218l32-110"/><path d="M700 360h410M770 390h280"/></g>
+<g fill="#dbeafe" opacity=".8"><circle cx="760" cy="80" r="7"/><circle cx="1070" cy="320" r="8"/><circle cx="690" cy="300" r="5"/><circle cx="950" cy="70" r="5"/></g>
+<text x="82" y="166" fill="#bfdbfe" font-family="Arial,sans-serif" font-size="26" font-weight="700" letter-spacing="7">STUDENT DEVELOPER COMMUNITY</text>
+<text x="78" y="260" fill="#fff" font-family="Arial,sans-serif" font-size="72" font-weight="700">DevCrest JU</text>
+<text x="84" y="326" fill="#dbeafe" font-family="Arial,sans-serif" font-size="32">DSA Wing · Problem Solving · Peer Learning</text>
+<rect x="84" y="372" width="252" height="5" rx="3" fill="url(#glow)"/>
+</svg>
