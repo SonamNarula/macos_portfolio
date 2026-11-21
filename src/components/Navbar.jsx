@@ -73,7 +73,7 @@ const Navbar = () => {
           Sonam's Portfolio
         </button>
 
-        <nav className="flex min-w-0 items-center gap-4 sm:gap-8">
+        <div role="navigation" aria-label="Portfolio" className="flex min-w-0 items-center gap-4 sm:gap-8">
           {navItems.map((item) => (
             <button
               key={item.window}
@@ -84,7 +84,7 @@ const Navbar = () => {
               {item.label}
             </button>
           ))}
-        </nav>
+        </div>
       </header>
     </>
   );
