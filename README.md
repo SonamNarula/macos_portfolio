@@ -19,7 +19,7 @@ A fully interactive macOS-style desktop in the browser. Open folders, launch app
 
 ![React](https://img.shields.io/badge/React-20232a?style=flat-square&logo=react&logoColor=61dafb)
 ![Vite](https://img.shields.io/badge/Vite-646cff?style=flat-square&logo=vite&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-0f172a?style=flat-square&logo=tailwindcss&logoColor=38bdf8)
+![JavaScript](https://img.shields.io/badge/JavaScript-20232a?style=flat-square&logo=javascript&logoColor=f7df1e)
 
 </div>
 
@@ -165,24 +165,24 @@ System status: Online
 | **HireLens** | AI / Full-Stack | Resume-aware AI workspace for role-specific interview prep. Upload a PDF resume plus a target job description and get a structured report with match score, skill gaps, questions and a prep plan, generated through Gemini and saved per authenticated user. | React 19, Vite 6, Node.js, Express 5, MongoDB, Gemini API |
 | **AcornFolio** | AI / Fintech | Mutual Fund Co-Pilot for Indian retail investors. Exposes expense-ratio leakage, compares Direct vs Regular plans, and weighs switching decisions against capital-gains tax, exit load and holding period. | Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, Framer Motion, Zustand |
 | **Trackify** | Productivity / Analytics | Student productivity and placement tracker: task manager, study-hours and DSA streak tracker, and a placement pipeline (applied, interview, selected, rejected). | React 18, TypeScript, Vite, Chart.js, Firebase Auth |
-| **NeuroNews** | AI / Exploration | An AI-focused news and information experience. | Details coming soon |
+| **[NeuroNews](https://github.com/SonamNarula/Neuro-News)** | AI / Exploration | An AI-focused news and information experience, open source on GitHub. | See the [repository](https://github.com/SonamNarula/Neuro-News) |
 | **CodeFusion** | Real-time / Dev Tools | Real-time collaborative code editor with private rooms (via Room ID), live sync and a VS Code-style Monaco editor. | React, Node.js, Express, Socket.io, Monaco Editor, Tailwind CSS |
 
-> Each project's GitHub and live-demo links are available inside the app (project folders and the Safari showcase).
+> Every project is browsable inside SonamOS itself: open its folder (desktop or Finder) for a `.txt` with the description, GitHub link and deployed link, or use the Safari showcase for tech-stack tags, **Explore details**, **GitHub** and **Live demo** buttons (Trackify is deployed).
 
 ---
 
 ## Tech Stack
 
-<!-- TODO: confirm this table matches package.json -->
-
 | Layer | Technology |
 |-------|------------|
-| Framework | React |
+| Language | JavaScript (ES6+), CSS, HTML |
+| UI library | React |
 | Build tool | Vite |
-| Styling | Tailwind CSS |
-| Icons | SVG icon set and custom macOS-style artwork |
-| Deployment | `[Vercel / Netlify / etc.]` |
+| Linting | ESLint |
+| Tooling | `jsconfig.json` for editor/path support |
+
+Everything runs client-side: the desktop, window manager and all apps ship as a static Vite build.
 
 ---
 
@@ -222,24 +222,19 @@ npm run preview
 
 ## Project Structure
 
-<!-- TODO: update this tree to match the real folders -->
-
 ```text
 macos_portfolio/
-├── public/                  # Wallpaper, resume PDF, photos, icons
-│   └── Sonam_Narula_Resume.pdf
-├── src/
-│   ├── components/
-│   │   ├── MenuBar          # Top navigation + clock/status icons
-│   │   ├── Dock             # Dock with app launchers
-│   │   ├── Window           # Draggable window shell (traffic lights)
-│   │   └── apps/            # Finder, Safari, Photos, Contacts, Terminal, Resume
-│   ├── data/                # Projects, skills, experience content
-│   ├── App                  # Desktop + window manager
-│   └── main                 # Entry point
-├── banner.svg, features.svg, flow.svg   # README artwork
-├── 01-desktop.png ... 09-resume-viewer.png  # README screenshots
-├── package.json
+├── public/                  # Static assets (wallpaper, resume PDF, photos, icons)
+├── src/                     # App source: desktop, menu bar, dock, window manager and apps
+├── index.html               # Vite entry HTML
+├── vite.config.js           # Vite configuration
+├── eslint.config.js         # ESLint rules
+├── jsconfig.json            # JS project config
+├── package.json             # Scripts and dependencies
+├── banner.svg               # README artwork
+├── features.svg             # README artwork
+├── flow.svg                 # README artwork
+├── 01-desktop.png ... 09-resume-viewer.png   # README screenshots
 └── README.md
 ```
 
@@ -251,7 +246,7 @@ Fork it and turn SonamOS into *YourOS*:
 
 1. **Rename the OS**: change `SonamOS` in the menu bar and Finder footer.
 2. **Swap the wallpaper**: drop your image into `public/` and update the reference.
-3. **Update your content**: edit the projects, skills and experience data files.
+3. **Update your content**: edit the projects, skills and experience content in `src/`.
 4. **Replace the resume**: overwrite the PDF in `public/`.
 5. **Change contact links**: update email, GitHub, LinkedIn, LeetCode and Codolio in the Contacts app.
 6. **Add your photos** to the Photos library.
@@ -279,9 +274,9 @@ If this project inspired you, a ⭐ goes a long way!
 **Sonam Narula** · *Think. Solve. Build.*
 
 [![GitHub](https://img.shields.io/badge/GitHub-SonamNarula-181717?style=for-the-badge&logo=github)](https://github.com/SonamNarula)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/YOUR_LINKEDIN)
-[![LeetCode](https://img.shields.io/badge/LeetCode-Profile-FFA116?style=for-the-badge&logo=leetcode&logoColor=black)](https://leetcode.com/YOUR_LEETCODE)
-[![Codolio](https://img.shields.io/badge/Codolio-Portfolio-6c4fd1?style=for-the-badge)](https://codolio.com/profile/YOUR_CODOLIO)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sonamnarula/)
+[![LeetCode](https://img.shields.io/badge/LeetCode-Profile-FFA116?style=for-the-badge&logo=leetcode&logoColor=black)](https://leetcode.com/u/sonamnarula2005/)
+[![Codolio](https://img.shields.io/badge/Codolio-Portfolio-6c4fd1?style=for-the-badge)](https://codolio.com/profile/0PG2lf5S)
 [![Email](https://img.shields.io/badge/Email-sonamnarula2108@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sonamnarula2108@gmail.com)
 
 <sub>Built with care, a lot of coffee, and an unreasonable love for macOS.</sub>
