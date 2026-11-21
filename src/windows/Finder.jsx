@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Folder,
   House,
@@ -30,11 +30,20 @@ const isFolder = (item) =>
   item?.type === "folder" ||
   Array.isArray(item?.children);
 
-const Finder = () => {
-  const initialEntry = { key: "work", folder: locations.work };
+const Finder = ({ data }) => {
+  const startKey = locations[data?.location] ? data.location : "work";
+  const initialEntry = { key: startKey, folder: locations[startKey] };
   const [history, setHistory] = useState([initialEntry]);
   const [historyIndex, setHistoryIndex] = useState(0);
   const [selectedId, setSelectedId] = useState(null);
+
+  useEffect(() => {
+    const nextKey = locations[data?.location] ? data.location : "work";
+    const nextEntry = { key: nextKey, folder: locations[nextKey] };
+    setHistory([nextEntry]);
+    setHistoryIndex(0);
+    setSelectedId(null);
+  }, [data?.location]);
 
   const openWindow = useWindowStore((state) => state.openWindow);
   const current = history[historyIndex] || initialEntry;
