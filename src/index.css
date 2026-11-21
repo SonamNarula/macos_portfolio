@@ -41,11 +41,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-main {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
 
 .window-wrapper {
   box-sizing: border-box;
@@ -134,4 +129,43 @@ main {
     gap: 4px;
     padding: 6px;
   }
+}
+
+
+/* Keep document scrolling inside app windows. Avoid global main rules:
+   Finder, Safari and project-detail windows use nested <main> elements. */
+#root {
+  position: relative;
+  min-height: 100%;
+}
+
+.window-wrapper {
+  overflow: visible;
+}
+
+.window-wrapper > * {
+  width: 100%;
+  height: 100%;
+}
+
+.window-wrapper main {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+}
+
+.window-wrapper main::-webkit-scrollbar {
+  width: 8px;
+}
+
+.window-wrapper main::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.35);
+}
+
+.window-wrapper main::-webkit-scrollbar-track {
+  background: transparent;
 }
