@@ -64,7 +64,7 @@ const projectFolder = ({
     {
       id: id * 10 + 1,
       name: `${name}.txt`,
-      icon: "/images/pdf.png",
+      icon: null,
       kind: "file",
       fileType: "txt",
       subtitle: name,
@@ -398,10 +398,15 @@ export const locations = {
 // Safari projects list: use the same verified project data without PNG previews.
 const blogPosts = WORK_LOCATION.children.map((project) => ({
   id: project.id,
+  name: project.name,
   title: project.name,
   description: project.description,
   tech: project.techStack,
+  techStack: project.techStack,
+  highlights: project.highlights,
+  architecture: project.architecture,
   link: project.github,
+  github: project.github,
   live: project.live,
   category: project.category,
 }));
