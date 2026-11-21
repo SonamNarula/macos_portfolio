@@ -16,7 +16,6 @@ const WindowWrapper = (Component, windowKey) => {
   const WrappedComponent = (props) => {
     const wrapperRef = useRef(null);
     const [position, setPosition] = useState(null);
-    const [size, setSize] = useState(WINDOW_SIZES[windowKey] || { width: 800, height: 620 });
 
     const windowState = useWindowStore((state) => state.windows[windowKey]);
     const focusWindow = useWindowStore((state) => state.focusWindow);
@@ -102,8 +101,8 @@ const WindowWrapper = (Component, windowKey) => {
     }, [focusWindow, isMaximized]);
 
     const defaults = WINDOW_SIZES[windowKey] || { width: 800, height: 620 };
-    const width = `min(${size.width}px, calc(100vw - 20px))`;
-    const height = `min(${size.height}px, calc(100vh - 120px))`;
+    const width = `min(${defaults.width}px, calc(100vw - 20px))`;
+    const height = `min(${defaults.height}px, calc(100vh - 120px))`;
 
     if (!isOpen || isMinimized) return null;
 
