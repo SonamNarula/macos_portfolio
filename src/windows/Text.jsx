@@ -73,7 +73,7 @@ const Text = ({ data }) => {
             <section className="mb-8 min-w-0">
               <div className="mb-4 flex items-center gap-2">
                 <CheckCircle2 size={18} className="shrink-0 text-blue-600" />
-                <h3 className="text-lg font-semibold text-gray-900">{isExperience ? "What I Do" : "Key Features & Contributions"}</h3>
+                <h3 className="text-lg font-semibold text-gray-900">{isExperience ? "What I Did" : "Key Features & Contributions"}</h3>
               </div>
               <ul className="space-y-3">
                 {highlights.map((item, index) => (
