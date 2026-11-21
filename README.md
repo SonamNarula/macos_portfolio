@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/banner.svg" alt="SonamOS — a macOS-themed developer portfolio" width="100%" />
+<img src="./banner.svg" alt="SonamOS — a macOS-themed developer portfolio" width="100%" />
 
 <br/>
 
@@ -56,7 +56,7 @@ Instead of a long landing page, **SonamOS** drops visitors onto a macOS-inspired
 
 <div align="center">
 
-<img src="./assets/screenshots/01-desktop.png" alt="SonamOS desktop with hero, menu bar, desktop folders and dock" width="92%" />
+<img src="./01-desktop.png" alt="SonamOS desktop with hero, menu bar, desktop folders and dock" width="92%" />
 
 <sub>The SonamOS desktop: menu bar, desktop folders, hero and dock.</sub>
 
@@ -66,16 +66,16 @@ Instead of a long landing page, **SonamOS** drops visitors onto a macOS-inspired
 
 <table>
   <tr>
-    <td width="50%"><img src="./assets/screenshots/02-finder-projects.png" alt="Finder window listing 5 projects" /><br/><sub><b>Finder</b> — Favourites sidebar and project folders</sub></td>
-    <td width="50%"><img src="./assets/screenshots/07-projects-maximized.png" alt="Safari window maximized showing project cards" /><br/><sub><b>Safari</b> — maximized project showcase</sub></td>
+    <td width="50%"><img src="./02-finder-projects.png" alt="Finder window listing 5 projects" /><br/><sub><b>Finder</b> — Favourites sidebar and project folders</sub></td>
+    <td width="50%"><img src="./07-projects-maximized.png" alt="Safari window maximized showing project cards" /><br/><sub><b>Safari</b> — maximized project showcase</sub></td>
   </tr>
   <tr>
-    <td width="50%"><img src="./assets/screenshots/06-terminal-skills.png" alt="Terminal window showing tech stack" /><br/><sub><b>Terminal</b> — <code>show tech stack</code></sub></td>
-    <td width="50%"><img src="./assets/screenshots/05-contacts.png" alt="Contacts window with social links" /><br/><sub><b>Contacts</b> — every way to reach me</sub></td>
+    <td width="50%"><img src="./06-terminal-skills.png" alt="Terminal window showing tech stack" /><br/><sub><b>Terminal</b> — <code>show tech stack</code></sub></td>
+    <td width="50%"><img src="./05-contacts.png" alt="Contacts window with social links" /><br/><sub><b>Contacts</b> — every way to reach me</sub></td>
   </tr>
   <tr>
-    <td width="50%"><img src="./assets/screenshots/04-photos.png" alt="Photos app library" /><br/><sub><b>Photos</b> — a more personal side</sub></td>
-    <td width="50%"><img src="./assets/screenshots/09-resume-viewer.png" alt="Resume PDF viewer" /><br/><sub><b>Resume</b> — built-in PDF viewer</sub></td>
+    <td width="50%"><img src="./04-photos.png" alt="Photos app library" /><br/><sub><b>Photos</b> — a more personal side</sub></td>
+    <td width="50%"><img src="./09-resume-viewer.png" alt="Resume PDF viewer" /><br/><sub><b>Resume</b> — built-in PDF viewer</sub></td>
   </tr>
 </table>
 
@@ -83,7 +83,7 @@ Instead of a long landing page, **SonamOS** drops visitors onto a macOS-inspired
 
 ## What's Inside
 
-<img src="./assets/features.svg" alt="SonamOS apps: Finder, Safari, Photos, Contacts, Terminal, Trash" width="100%" />
+<img src="./features.svg" alt="SonamOS apps: Finder, Safari, Photos, Contacts, Terminal, Trash" width="100%" />
 
 - **macOS-style menu bar** with working navigation (`Projects`, `Experience`, `Contact`, `Resume`) plus live status icons and a real-time clock
 - **Dock** with Finder, Safari, Photos, Contacts, Terminal and Trash, including hover magnification and running-app indicators
@@ -100,7 +100,7 @@ Instead of a long landing page, **SonamOS** drops visitors onto a macOS-inspired
 
 ## How It Works
 
-<img src="./assets/flow.svg" alt="Diagram of how the menu bar, desktop folders and dock open windows" width="100%" />
+<img src="./flow.svg" alt="Diagram of how the menu bar, desktop folders and dock open windows" width="100%" />
 
 Three entry points (menu bar, desktop folders and dock) all talk to the same **window manager**, so any app can be opened, focused, stacked, minimized or maximized from anywhere.
 
@@ -125,7 +125,7 @@ The top navigation is fully functional:
 Double-click any folder on the desktop (**CodeFusion**, **AcornFolio**, **HireLens**) to open a Finder window.
 
 <div align="center">
-<img src="./assets/screenshots/08-project-folder.png" alt="HireLens folder opened in Finder showing HireLens.txt" width="85%" />
+<img src="./08-project-folder.png" alt="HireLens folder opened in Finder showing HireLens.txt" width="85%" />
 </div>
 
 Inside each project folder you'll find a `.txt` file with:
@@ -237,7 +237,8 @@ macos_portfolio/
 │   ├── data/                # Projects, skills, experience content
 │   ├── App                  # Desktop + window manager
 │   └── main                 # Entry point
-├── assets/                  # README banner, SVGs and screenshots
+├── banner.svg, features.svg, flow.svg   # README artwork
+├── 01-desktop.png ... 09-resume-viewer.png  # README screenshots
 ├── package.json
 └── README.md
 ```
