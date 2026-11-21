@@ -110,7 +110,7 @@ const WindowWrapper = (Component, windowKey) => {
         window.removeEventListener("pointerup", onPointerUp);
         window.removeEventListener("pointercancel", onPointerUp);
       };
-    }, [focusWindow, isMaximized]);
+    }, [focusWindow, isMaximized, isOpen, isMinimized]);
 
     const beginResize = (event, direction) => {
       event.preventDefault();
