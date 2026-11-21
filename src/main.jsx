@@ -1,10 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import React from "react";
+import { createRoot } from "react-dom/client";
 
-createRoot(document.getElementById('root')).render(
-    <StrictMode>
-        <App />
-    </StrictMode>,
-)
+const root = createRoot(document.getElementById("root"));
+
+root.render(
+    <div style={{
+        position: "fixed",
+        inset: 0,
+        display: "grid",
+        placeItems: "center",
+        background: "#102b70",
+        color: "white",
+        fontSize: "40px",
+        zIndex: 9999
+    }}>
+        React is working!
+    </div>
+);

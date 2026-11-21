@@ -1,6 +1,14 @@
-
 import { useState } from "react";
-import { Copy, Check, Mail, Github, Linkedin, Code2, Trophy, ExternalLink } from "lucide-react";
+import {
+    Copy,
+    Check,
+    Mail,
+    Code2,
+    Trophy,
+    ExternalLink,
+    BriefcaseBusiness,
+} from "lucide-react";
+
 import WindowWrapper from "../components/WindowWrapper";
 import WindowControls from "#components/WindowControls";
 
@@ -11,14 +19,14 @@ const socials = [
         name: "GitHub",
         detail: "Explore my repositories",
         href: "https://github.com/SonamNarula",
-        icon: Github,
+        icon: "GH",
         color: "#24292f",
     },
     {
         name: "LinkedIn",
         detail: "Let's connect professionally",
         href: "https://www.linkedin.com/in/sonamnarula",
-        icon: Linkedin,
+        icon: "IN",
         color: "#0A66C2",
     },
     {
@@ -52,14 +60,18 @@ const Contact = () => {
 
     return (
         <div className="flex h-full flex-col overflow-hidden rounded-lg bg-white">
+            {/* Header */}
             <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 py-3">
                 <WindowControls target="contact" />
+
                 <h2 className="text-sm font-semibold text-gray-700">
                     Contact Me
                 </h2>
+
                 <div className="w-10" />
             </div>
 
+            {/* Content */}
             <div className="space-y-5 overflow-y-auto p-6">
                 <div>
                     <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-600">
@@ -76,6 +88,7 @@ const Contact = () => {
                     </p>
                 </div>
 
+                {/* Email */}
                 <button
                     type="button"
                     onClick={handleCopy}
@@ -83,6 +96,7 @@ const Contact = () => {
                 >
           <span className="flex min-w-0 items-center gap-3">
             <Mail size={20} className="shrink-0 text-gray-500" />
+
             <span className="truncate text-sm font-medium text-gray-700">
               {EMAIL}
             </span>
@@ -101,6 +115,7 @@ const Contact = () => {
                     </p>
                 )}
 
+                {/* Social links */}
                 <div>
                     <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-400">
                         Find me online
@@ -120,7 +135,14 @@ const Contact = () => {
                                     style={{ backgroundColor: social.color }}
                                 >
                                     <div className="flex items-center justify-between">
-                                        <Icon size={23} />
+                                        {typeof Icon === "string" ? (
+                                            <span className="text-xl font-black tracking-tight">
+                        {Icon}
+                      </span>
+                                        ) : (
+                                            <Icon size={23} />
+                                        )}
+
                                         <ExternalLink
                                             size={14}
                                             className="opacity-60 transition group-hover:opacity-100"
@@ -129,6 +151,7 @@ const Contact = () => {
 
                                     <div>
                                         <p className="text-sm font-bold">{social.name}</p>
+
                                         <p className="mt-1 text-xs text-white/75">
                                             {social.detail}
                                         </p>
@@ -139,6 +162,7 @@ const Contact = () => {
                     </div>
                 </div>
 
+                {/* Email CTA */}
                 <a
                     href={`mailto:${EMAIL}`}
                     className="block rounded-xl bg-blue-600 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-blue-700"
