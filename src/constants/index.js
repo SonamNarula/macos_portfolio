@@ -263,7 +263,7 @@ const ABOUT_LOCATION = {
     {
       id: 21,
       name: "About Sonam.txt",
-      icon: "/images/pdf.png",
+      icon: null,
       kind: "file",
       fileType: "txt",
       subtitle: "A little introduction",
@@ -294,7 +294,7 @@ const EXPERIENCE_LOCATION = {
     {
       id: 31,
       name: "DevCrest JU.txt",
-      icon: "/images/pdf.png",
+      icon: null,
       kind: "file",
       fileType: "txt",
       subtitle: "DSA Wing Captain",
@@ -317,7 +317,7 @@ const EXPERIENCE_LOCATION = {
     {
       id: 32,
       name: "JECRC Incubation Centre.txt",
-      icon: "/images/pdf.png",
+      icon: null,
       kind: "file",
       fileType: "txt",
       subtitle: "Incubation Ambassador",
@@ -339,7 +339,7 @@ const EXPERIENCE_LOCATION = {
     {
       id: 33,
       name: "TakeUForward.txt",
-      icon: "/images/pdf.png",
+      icon: null,
       kind: "file",
       fileType: "txt",
       subtitle: "Campus Ambassador",
@@ -371,7 +371,7 @@ const RESUME_LOCATION = {
     {
       id: 41,
       name: "Sonam_Narula_Resume.pdf",
-      icon: "/images/pdf.png",
+      icon: null,
       kind: "file",
       fileType: "pdf",
     },
