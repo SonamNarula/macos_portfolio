@@ -1,10 +1,10 @@
 
 import { useRef } from "react";
-import { dockApps } from "#constants/index.js";
+import { dockApps } from "../constants";
 import { Tooltip } from "react-tooltip";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import useWindowStore from "../store/window.js";
+import useWindowStore from "../store/window";
 
 const Dock = () => {
     const dockRef = useRef(null);
@@ -67,7 +67,7 @@ const Dock = () => {
 
         const existingWindow = windows[app.id];
 
-        if (existingWindow?.isOpen) {
+        if (existingWindow?.isOpen && !existingWindow.isMinimized) {
             focusWindow(app.id);
         } else {
             openWindow(app.id);
@@ -77,33 +77,36 @@ const Dock = () => {
     return (
         <section id="dock">
             <div ref={dockRef} className="dock-container">
-                {dockApps.map((app) => (
-                    <div key={app.id} className="relative flex justify-center">
-                        <button
-                            type="button"
-                            className="dock-icon"
-                            aria-label={app.name}
-                            data-tooltip-id="dock-tooltip"
-                            data-tooltip-content={app.name}
-                            data-tooltip-delay-show={150}
-                            disabled={!app.canOpen}
-                            onClick={() => handleAppClick(app)}
-                        >
-                            <img
-                                src={`/images/${app.icon}`}
-                                alt={app.name}
-                                loading="lazy"
-                                className={`h-full w-full object-contain ${
-                                    app.canOpen ? "" : "opacity-60"
-                                }`}
-                            />
-                        </button>
+                {dockApps.map((app) => {
+                    const isOpen = windows[app.id]?.isOpen;
 
-                        {windows[app.id]?.isOpen && (
-                            <span className="absolute -bottom-1 h-1 w-1 rounded-full bg-white" />
-                        )}
-                    </div>
-                ))}
+                    return (
+                        <div key={app.id} className="relative flex justify-center">
+                            <button
+                                type="button"
+                                className="dock-icon"
+                                aria-label={`Open ${app.name}`}
+                                data-tooltip-id="dock-tooltip"
+                                data-tooltip-content={app.name}
+                                disabled={!app.canOpen}
+                                onClick={() => handleAppClick(app)}
+                            >
+                                <img
+                                    src={`/images/${app.icon}`}
+                                    alt={app.name}
+                                    draggable="false"
+                                    className={`h-full w-full object-contain ${
+                                        app.canOpen ? "" : "opacity-60"
+                                    }`}
+                                />
+                            </button>
+
+                            {isOpen && (
+                                <span className="absolute -bottom-1 h-1 w-1 rounded-full bg-white" />
+                            )}
+                        </div>
+                    );
+                })}
 
                 <Tooltip
                     id="dock-tooltip"

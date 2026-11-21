@@ -1,29 +1,43 @@
 
 import { useMemo } from "react";
+import {
+    Folder,
+    FolderOpen,
+    FileText,
+    FileImage,
+    ChevronLeft,
+    ChevronRight,
+    House,
+    BriefcaseBusiness,
+} from "lucide-react";
+
 import WindowWrapper from "../components/WindowWrapper";
 import WindowControls from "../components/WindowControls";
 import { locations } from "../constants";
 import useLocationStore from "../store/location";
 import useWindowStore from "../store/window";
-import {
-    Folder,
-    FileText,
-    FileImage,
-    File,
-    ChevronLeft,
-    ChevronRight,
-    House,
-} from "lucide-react";
+
+const sidebarItems = [
+    { id: "work", name: "Projects", icon: BriefcaseBusiness },
+    { id: "about", name: "About Me", icon: House },
+    { id: "experience", name: "Experience", icon: Folder },
+    { id: "trash", name: "Trash", icon: Folder },
+];
 
 const Finder = () => {
-    const activeLocations = useLocationStore((state) => state.activeLocations);
+    const activeLocations = useLocationStore(
+        (state) => state.activeLocations
+    );
     const setActiveLocation = useLocationStore(
         (state) => state.setActiveLocation
     );
+    const goBack = useLocationStore((state) => state.goBack);
 
     const openWindow = useWindowStore((state) => state.openWindow);
 
-    const currentLocation = activeLocations?.[activeLocations.length - 1] || "work";
+    const currentLocation =
+        activeLocations?.[activeLocations.length - 1] || "work";
+
     const currentFolder = locations[currentLocation] || locations.work;
 
     const items = useMemo(
@@ -31,108 +45,133 @@ const Finder = () => {
         [currentFolder]
     );
 
-    const openItem = (item) => {
+    const handleOpen = (item) => {
         if (item.kind === "folder") {
             setActiveLocation(item.id);
             return;
         }
 
         if (item.fileType === "pdf") {
-            openWindow("resume", { name: item.name });
+            openWindow("resume");
         } else if (item.fileType === "img") {
-            openWindow("imgfile", item);
+            openWindow("imgfile");
         } else {
-            openWindow("txtfile", item);
+            openWindow("txtfile");
         }
     };
 
-    const sidebarItems = [
-        { id: "work", label: "Projects" },
-        { id: "about", label: "About Me" },
-        { id: "experience", label: "Experience" },
-        { id: "resume", label: "Resume" },
-        { id: "trash", label: "Trash" },
-    ];
-
     const getFileIcon = (item) => {
-        if (item.kind === "folder") return <Folder size={34} className="text-blue-500" />;
-        if (item.fileType === "img") return <FileImage size={34} className="text-purple-500" />;
-        if (item.fileType === "pdf") return <File size={34} className="text-red-500" />;
-        return <FileText size={34} className="text-gray-500" />;
+        if (item.kind === "folder") return Folder;
+
+        if (item.fileType === "img") return FileImage;
+
+        return FileText;
     };
 
     return (
-        <div className="flex h-full min-h-[420px] flex-col overflow-hidden bg-white text-gray-800">
-            <div id="window-header">
-                <WindowControls target="finder" />
-                <h2 className="flex-1 text-center font-semibold text-gray-700">
-                    {currentFolder.name}
-                </h2>
-                <div className="w-12" />
-            </div>
+        <div
+            id="finder"
+            className="flex h-[520px] w-[min(850px,90vw)] overflow-hidden rounded-xl bg-white shadow-2xl"
+        >
+            {/* Sidebar */}
+            <aside className="sidebar">
+                <div className="mb-5 flex items-center gap-3">
+                    <WindowControls target="finder" />
+                </div>
 
-            <div className="flex min-h-0 flex-1">
-                <aside className="w-44 shrink-0 border-r border-gray-200 bg-gray-50 p-3">
-                    <p className="mb-3 px-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
-                        Favorites
-                    </p>
+                <h3>Favourites</h3>
 
-                    {sidebarItems.map((item) => (
-                        <button
-                            key={item.id}
-                            onClick={() => setActiveLocation(item.id)}
-                            className={`mb-1 flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition ${
-                                currentLocation === item.id
-                                    ? "bg-blue-100 text-blue-700"
-                                    : "text-gray-600 hover:bg-gray-200"
-                            }`}
-                        >
-                            <Folder size={16} />
-                            {item.label}
-                        </button>
-                    ))}
-                </aside>
+                <ul>
+                    {sidebarItems.map((item) => {
+                        const Icon = item.icon;
 
-                <section className="flex min-w-0 flex-1 flex-col">
-                    <div className="flex items-center gap-3 border-b border-gray-200 px-4 py-3">
-                        <button
-                            onClick={() => setActiveLocation("work")}
-                            className="rounded p-1 hover:bg-gray-100"
-                            title="Go to Projects"
-                        >
-                            <House size={17} />
-                        </button>
-                        <ChevronLeft size={17} className="text-gray-400" />
-                        <ChevronRight size={17} className="text-gray-400" />
-                        <span className="text-sm font-medium">{currentFolder.name}</span>
-                    </div>
-
-                    <div className="grid flex-1 content-start grid-cols-2 gap-5 overflow-auto p-5 sm:grid-cols-3">
-                        {items.map((item) => (
-                            <button
+                        return (
+                            <li
                                 key={item.id}
-                                onDoubleClick={() => openItem(item)}
+                                className={
+                                    currentLocation === item.id
+                                        ? "active"
+                                        : "not-active"
+                                }
                                 onClick={() => {
-                                    if (item.kind === "folder") {
-                                        // Double-click opens folders, single-click selects.
+                                    if (locations[item.id]) {
+                                        setActiveLocation(item.id);
                                     }
                                 }}
-                                className="flex min-h-24 flex-col items-center justify-center gap-2 rounded-xl p-3 text-center transition hover:bg-blue-50"
-                                title={`Double-click to open ${item.name}`}
                             >
-                                {getFileIcon(item)}
-                                <span className="max-w-full break-words text-xs text-gray-700">
-                  {item.name}
-                </span>
-                            </button>
-                        ))}
-                    </div>
+                                <Icon size={17} />
+                                <span className="text-sm">{item.name}</span>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </aside>
 
-                    <footer className="border-t border-gray-200 px-4 py-2 text-xs text-gray-400">
-                        {items.length} items
-                    </footer>
-                </section>
-            </div>
+            {/* Main content */}
+            <main className="content flex-1 overflow-y-auto bg-white">
+                <div
+                    id="window-header"
+                    className="mb-6 flex items-center gap-3"
+                >
+                    <button
+                        type="button"
+                        onClick={goBack}
+                        disabled={activeLocations.length <= 1}
+                        className="rounded p-1 hover:bg-gray-200 disabled:opacity-30"
+                    >
+                        <ChevronLeft size={19} />
+                    </button>
+
+                    <button
+                        type="button"
+                        disabled
+                        className="rounded p-1 opacity-30"
+                    >
+                        <ChevronRight size={19} />
+                    </button>
+
+                    <h2 className="ml-2 font-semibold text-gray-700">
+                        {currentFolder?.name || "Finder"}
+                    </h2>
+                </div>
+
+                {items.length > 0 ? (
+                    <div className="grid grid-cols-3 gap-6 sm:grid-cols-4">
+                        {items.map((item, index) => {
+                            const Icon = getFileIcon(item);
+
+                            return (
+                                <button
+                                    type="button"
+                                    key={item.id || `${item.name}-${index}`}
+                                    onDoubleClick={() => handleOpen(item)}
+                                    className="group flex flex-col items-center gap-2 rounded-lg p-3 text-center transition hover:bg-blue-50"
+                                    title="Double-click to open"
+                                >
+                                    <Icon
+                                        size={48}
+                                        strokeWidth={1.3}
+                                        className={
+                                            item.kind === "folder"
+                                                ? "fill-blue-200 text-blue-500"
+                                                : "text-gray-500"
+                                        }
+                                    />
+
+                                    <span className="max-w-full break-words text-xs text-gray-700">
+                    {item.name}
+                  </span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <div className="flex h-64 flex-col items-center justify-center text-gray-400">
+                        <FolderOpen size={48} strokeWidth={1.2} />
+                        <p className="mt-3 text-sm">This folder is empty</p>
+                    </div>
+                )}
+            </main>
         </div>
     );
 };
