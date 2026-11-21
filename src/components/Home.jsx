@@ -1,3 +1,50 @@
+import { useRef } from "react";
+import gsap from "gsap";
+
+const LetterHover = ({ children, className = "" }) => {
+  const lineRef = useRef(null);
+
+  const animateLetters = () => {
+    const letters = lineRef.current?.querySelectorAll(".hover-letter");
+    if (!letters?.length) return;
+
+    gsap.fromTo(
+      letters,
+      { y: 0, scale: 1, color: "inherit" },
+      {
+        y: -5,
+        scale: 1.08,
+        duration: 0.22,
+        stagger: 0.035,
+        ease: "back.out(2)",
+        yoyo: true,
+        repeat: 1,
+        overwrite: "auto",
+      }
+    );
+  };
+
+  return (
+    <span
+      ref={lineRef}
+      onMouseEnter={animateLetters}
+      className={`inline-block cursor-default ${className}`}
+      aria-label={children}
+    >
+      {Array.from(children).map((character, index) => (
+        <span
+          key={index}
+          className="hover-letter inline-block transition-colors duration-150 hover:text-blue-200"
+          style={{ whiteSpace: character === " " ? "pre" : "normal" }}
+          aria-hidden="true"
+        >
+          {character === " " ? "\u00a0" : character}
+        </span>
+      ))}
+    </span>
+  );
+};
+
 const Home = () => {
   return (
     <section
@@ -5,33 +52,30 @@ const Home = () => {
       className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden px-5"
     >
       <div className="text-center text-white">
-        <p className="mb-5 text-lg font-light tracking-wide transition-all duration-200 hover:font-medium sm:text-2xl">
-          Hello, I'm
+        <p className="mb-5 text-lg font-light tracking-wide sm:text-2xl">
+          <LetterHover>Hello, I'm</LetterHover>
         </p>
 
-        <h1 className="whitespace-nowrap text-5xl font-bold tracking-tight drop-shadow-lg transition-all duration-200 hover:font-extrabold sm:text-7xl md:text-8xl">
-          Sonam Narula<span className="text-blue-300">.</span>
+        <h1 className="whitespace-nowrap text-5xl font-bold tracking-tight drop-shadow-lg sm:text-7xl md:text-8xl">
+          <LetterHover>Sonam Narula</LetterHover><span className="text-blue-300">.</span>
         </h1>
 
-        <h2 className="mt-5 text-3xl font-light italic tracking-wide transition-all duration-200 hover:font-medium sm:text-4xl">
-          Think. Solve. Build.
+        <h2 className="mt-5 text-3xl font-light italic tracking-wide sm:text-4xl">
+          <LetterHover>Think. Solve. Build.</LetterHover>
         </h2>
 
-        <p className="mt-6 text-sm font-medium tracking-[0.12em] text-white/90 transition-all duration-200 hover:font-bold sm:text-base">
-          DSA <span className="text-blue-300">·</span> COMPETITIVE PROGRAMMING{" "}
-          <span className="text-blue-300">·</span> AI/ML
+        <p className="mt-6 text-sm font-medium tracking-[0.12em] text-white/90 sm:text-base">
+          <LetterHover>DSA · COMPETITIVE PROGRAMMING · AI/ML</LetterHover>
         </p>
 
-        <div className="mt-7 inline-flex rounded-full border border-white/25 bg-white/10 px-5 py-3 shadow-lg backdrop-blur-md transition-all duration-200 hover:border-white/50 hover:bg-white/15">
-          <p className="text-xs font-semibold tracking-wide transition-all duration-200 hover:font-bold sm:text-sm">
-            ICPC ALGO QUEEN 2026
-            <span className="mx-2 text-blue-300">·</span>
-            GLOBAL RANK 386
+        <div className="mt-7 inline-flex rounded-full border border-white/25 bg-white/10 px-5 py-3 shadow-lg backdrop-blur-md transition-colors duration-300 hover:border-white/50 hover:bg-white/15">
+          <p className="text-xs font-semibold tracking-wide sm:text-sm">
+            <LetterHover>ICPC ALGO QUEEN 2026 · GLOBAL RANK 386</LetterHover>
           </p>
         </div>
 
-        <p className="mt-7 text-sm text-white/75 transition-all duration-200 hover:font-semibold sm:text-base">
-          Turning complex problems into elegant solutions.
+        <p className="mt-7 text-sm text-white/75 sm:text-base">
+          <LetterHover>Turning complex problems into elegant solutions.</LetterHover>
         </p>
       </div>
     </section>
