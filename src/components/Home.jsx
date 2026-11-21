@@ -1,50 +1,17 @@
-import { useRef } from "react";
-import gsap from "gsap";
-
-const LetterHover = ({ children, className = "" }) => {
-  const lineRef = useRef(null);
-
-  const animateLetter = (event) => {
-    const letter = event.currentTarget;
-    gsap.killTweensOf(letter);
-    gsap.fromTo(
-      letter,
-      { y: 0, scale: 1, color: "inherit", fontWeight: 600 },
-      {
-        y: -5,
-        scale: 1.12,
-        color: "#bfdbfe",
-        fontWeight: 900,
-        duration: 0.18,
-        ease: "back.out(2)",
-        yoyo: true,
-        repeat: 1,
-        repeatDelay: 0.06,
-        overwrite: true,
-      }
-    );
-  };
-
-  return (
-    <span
-      ref={lineRef}
-      className={`inline-block cursor-default ${className}`}
-      aria-label={children}
-    >
-      {Array.from(children).map((character, index) => (
-        <span
-          key={index}
-          onMouseEnter={animateLetter}
-          className="hover-letter inline-block"
-          style={{ whiteSpace: character === " " ? "pre" : "normal" }}
-          aria-hidden="true"
-        >
-          {character === " " ? "\u00a0" : character}
-        </span>
-      ))}
-    </span>
-  );
-};
+const LetterHover = ({ children, className = "" }) => (
+  <span className={`inline-block cursor-default ${className}`} aria-label={children}>
+    {Array.from(children).map((character, index) => (
+      <span
+        key={index}
+        className="inline-block transition-[font-weight,color] duration-150 ease-out hover:font-bold hover:text-blue-200"
+        style={{ whiteSpace: character === " " ? "pre" : "normal" }}
+        aria-hidden="true"
+      >
+        {character === " " ? "\u00a0" : character}
+      </span>
+    ))}
+  </span>
+);
 
 const Home = () => (
   <section
