@@ -20,60 +20,56 @@ const Text = ({ data }) => {
   const paragraphs = Array.isArray(description) ? description : [description];
 
   return (
-    <div className="flex h-full w-full min-w-0 flex-col overflow-hidden rounded-xl bg-white text-gray-800 shadow-2xl">
-      <header id="window-header" className="flex h-14 shrink-0 items-center justify-between border-b border-gray-200 bg-gray-50 px-4">
-        <div className="w-20"><WindowControls target="txtfile" /></div>
-        <h2 className="min-w-0 flex-1 truncate text-center text-sm font-semibold text-gray-700">{title}</h2>
-        <div className="w-20" />
+    <div className="flex h-full w-full min-w-0 max-w-full flex-col overflow-hidden rounded-xl bg-white text-gray-800 shadow-2xl">
+      <header id="window-header" className="flex h-14 shrink-0 items-center justify-between border-b border-gray-200 bg-gray-50 px-3 sm:px-4">
+        <div className="w-16 shrink-0"><WindowControls target="txtfile" /></div>
+        <h2 className="min-w-0 flex-1 truncate px-2 text-center text-sm font-semibold text-gray-700">{title}</h2>
+        <div className="w-16 shrink-0" />
       </header>
 
-      <main className="min-h-0 flex-1 overflow-y-auto">
-        <div className="mx-auto w-full max-w-3xl px-6 py-8 sm:px-10 sm:py-10">
+      <main className="min-h-0 w-full min-w-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain">
+        <div className="mx-auto w-full min-w-0 max-w-3xl px-4 py-6 sm:px-8 sm:py-9">
           {data?.imageUrl && (
-            <div className="mb-8 overflow-hidden rounded-2xl border border-gray-200 bg-slate-950">
-              <img src={data.imageUrl} alt={title} className="h-48 w-full object-cover sm:h-60" />
+            <div className="mb-7 w-full overflow-hidden rounded-2xl border border-gray-200 bg-slate-950">
+              <img src={data.imageUrl} alt={title} className="h-40 w-full object-cover sm:h-56" />
             </div>
           )}
 
-          <div className="mb-8">
+          <div className="mb-7 min-w-0">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600">
               {data?.category || (isExperience ? "Experience" : "Project overview")}
             </p>
             <h1 className="mt-3 break-words text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{title}</h1>
             {data?.role && (
-              <p className="mt-2 text-base font-medium text-gray-500">
+              <p className="mt-2 break-words text-base font-medium text-gray-500">
                 {data.role}{data.organization ? ` · ${data.organization}` : ""}
               </p>
             )}
           </div>
 
-          <section className="mb-8">
+          <section className="mb-8 min-w-0">
             <div className="mb-4 flex items-center gap-2">
-              <BriefcaseBusiness size={18} className="text-blue-600" />
-              <h3 className="text-lg font-semibold text-gray-900">
-                {isExperience ? "About the Experience" : "About the Project"}
-              </h3>
+              <BriefcaseBusiness size={18} className="shrink-0 text-blue-600" />
+              <h3 className="text-lg font-semibold text-gray-900">{isExperience ? "About the Experience" : "About the Project"}</h3>
             </div>
-            <div className="space-y-3 text-sm leading-7 text-gray-600 sm:text-[15px]">
+            <div className="min-w-0 space-y-3 break-words text-sm leading-7 text-gray-600 sm:text-[15px]">
               {paragraphs.map((paragraph, index) => (
-                <p key={index}>{typeof paragraph === "string" ? paragraph : paragraph?.text || ""}</p>
+                <p key={index} className="break-words">{typeof paragraph === "string" ? paragraph : paragraph?.text || ""}</p>
               ))}
             </div>
           </section>
 
           {highlights.length > 0 && (
-            <section className="mb-8">
+            <section className="mb-8 min-w-0">
               <div className="mb-4 flex items-center gap-2">
-                <CheckCircle2 size={18} className="text-blue-600" />
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {isExperience ? "What I Do" : "Key Features & Contributions"}
-                </h3>
+                <CheckCircle2 size={18} className="shrink-0 text-blue-600" />
+                <h3 className="text-lg font-semibold text-gray-900">{isExperience ? "What I Do" : "Key Features & Contributions"}</h3>
               </div>
               <ul className="space-y-3">
                 {highlights.map((item, index) => (
-                  <li key={index} className="flex items-start gap-3 text-sm leading-6 text-gray-600">
+                  <li key={index} className="flex min-w-0 items-start gap-3 text-sm leading-6 text-gray-600">
                     <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
-                    <span>{item}</span>
+                    <span className="min-w-0 break-words">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -81,27 +77,25 @@ const Text = ({ data }) => {
           )}
 
           {architecture.length > 0 && (
-            <section className="mb-8">
+            <section className="mb-8 min-w-0">
               <div className="mb-4 flex items-center gap-2">
-                <Layers3 size={18} className="text-blue-600" />
+                <Layers3 size={18} className="shrink-0 text-blue-600" />
                 <h3 className="text-lg font-semibold text-gray-900">Architecture & Implementation</h3>
               </div>
-              <div className="grid gap-2 sm:grid-cols-2">
+              <div className="grid min-w-0 grid-cols-1 gap-2 sm:grid-cols-2">
                 {architecture.map((item, index) => (
-                  <div key={index} className="rounded-xl border border-gray-200 bg-gray-50 p-3 text-sm leading-6 text-gray-600">
-                    {item}
-                  </div>
+                  <div key={index} className="min-w-0 break-words rounded-xl border border-gray-200 bg-gray-50 p-3 text-sm leading-6 text-gray-600">{item}</div>
                 ))}
               </div>
             </section>
           )}
 
           {techStack.length > 0 && (
-            <section className="mb-8">
+            <section className="mb-8 min-w-0">
               <h3 className="mb-4 text-lg font-semibold text-gray-900">Core Technologies Used</h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex min-w-0 flex-wrap gap-2">
                 {techStack.map((tech, index) => (
-                  <span key={index} className="rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700">
+                  <span key={index} className="max-w-full break-words rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700">
                     {typeof tech === "string" ? tech : tech.name}
                   </span>
                 ))}
@@ -109,25 +103,27 @@ const Text = ({ data }) => {
             </section>
           )}
 
-          <section className="border-t border-gray-200 pt-6">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-gray-400">
-              {isExperience ? "Connect" : "Project Links"}
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {github && (
-                <a href={github} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#24292f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-black">
-                  <GitHubIcon /> View on GitHub <ExternalLink size={14} />
-                </a>
-              )}
-              {live && (
-                <a href={live} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
-                  Live Deployment <ExternalLink size={14} />
-                </a>
-              )}
-            </div>
-          </section>
+          {(github || live) && (
+            <section className="border-t border-gray-200 pt-6 pb-2">
+              <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-gray-400">
+                {isExperience ? "Connect" : "Project Links"}
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {github && (
+                  <a href={github} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#24292f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-black">
+                    <GitHubIcon /> View on GitHub <ExternalLink size={14} />
+                  </a>
+                )}
+                {live && (
+                  <a href={live} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
+                    Live Deployment <ExternalLink size={14} />
+                  </a>
+                )}
+              </div>
+            </section>
+          )}
         </div>
       </main>
     </div>
