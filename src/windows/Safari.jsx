@@ -33,8 +33,8 @@ const Safari = () => {
         <div className="w-6" />
       </div>
 
-      <main className="min-h-0 flex-1 overflow-y-auto px-5 py-7 sm:px-9">
-        <div className="mx-auto max-w-5xl">
+      <main className="h-0 min-h-0 w-full flex-1 overflow-y-auto overflow-x-hidden overscroll-contain px-5 py-6 sm:px-8" style={{ WebkitOverflowScrolling: "touch" }}>
+        <div className="mx-0 w-full max-w-none">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">Selected Work</p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
             Projects I've built<span className="text-blue-500">.</span>
@@ -43,7 +43,7 @@ const Safari = () => {
             A closer look at my work across AI-powered applications, productivity tools and collaborative developer experiences.
           </p>
 
-          <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <div className="mt-7 grid w-full grid-cols-1 gap-5 md:grid-cols-2">
             {blogPosts.map((project, index) => (
               <article key={project.id} className="flex min-w-0 flex-col rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg">
                 <div className="flex items-start justify-between gap-3">
