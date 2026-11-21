@@ -1,113 +1,149 @@
-import { useRef, useLayoutEffect } from "react";
-import gsap from "gsap";
-import { Draggable } from "gsap/Draggable";
-import { useGSAP } from "@gsap/react";
-import useWindowStore from "../store/window.js";
 
-gsap.registerPlugin(Draggable);
+import { useEffect, useRef, useState } from "react";
+import useWindowStore from "../store/window.js";
 
 const WindowWrapper = (Component, windowKey) => {
     const WrappedComponent = (props) => {
-        const windowRef = useRef(null);
+        const wrapperRef = useRef(null);
 
         const windowState = useWindowStore(
             (state) => state.windows[windowKey]
         );
-
-        const focusWindow = useWindowStore(
-            (state) => state.focusWindow
-        );
+        const focusWindow = useWindowStore((state) => state.focusWindow);
 
         const isOpen = windowState?.isOpen ?? false;
         const isMinimized = windowState?.isMinimized ?? false;
         const isMaximized = windowState?.isMaximized ?? false;
-        const zIndex = windowState?.zIndex ?? 0;
+        const zIndex = windowState?.zIndex ?? 10;
 
-        // Show or hide window
-        useLayoutEffect(() => {
-            const element = windowRef.current;
+        const [position, setPosition] = useState(null);
 
+        useEffect(() => {
+            if (!isOpen || isMinimized) return;
+
+            const element = wrapperRef.current;
             if (!element) return;
 
-            element.style.display =
-                isOpen && !isMinimized ? "block" : "none";
+            if (!position) {
+                const rect = element.getBoundingClientRect();
+                setPosition({
+                    x: Math.max(8, (window.innerWidth - rect.width) / 2),
+                    y: Math.max(45, (window.innerHeight - rect.height) / 2),
+                });
+            }
         }, [isOpen, isMinimized]);
 
-        // Opening animation
-        useGSAP(
-            () => {
-                const element = windowRef.current;
+        useEffect(() => {
+            const element = wrapperRef.current;
+            if (!element) return;
 
-                if (!element || !isOpen || isMinimized) return;
+            let dragData = null;
 
-                gsap.fromTo(
-                    element,
-                    {
-                        scale: 0.92,
-                        opacity: 0,
-                        y: 25,
-                    },
-                    {
-                        scale: 1,
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.35,
-                        ease: "power2.out",
-                    }
-                );
-            },
-            {
-                dependencies: [isOpen, isMinimized],
-                scope: windowRef,
-            }
-        );
+            const handlePointerDown = (event) => {
+                const header = event.target.closest("#window-header");
 
-        // Drag functionality
-        useGSAP(
-            () => {
-                const element = windowRef.current;
+                if (!header) return;
+                if (event.target.closest("button")) {
+                    // Allow dragging from empty parts of the header, not its controls.
+                    if (event.target.closest("[data-no-drag]")) return;
+                }
 
-                if (!element || !isOpen || isMinimized) return;
+                if (isMaximized) return;
 
-                const header =
-                    element.querySelector("#window-header") || element;
+                const rect = element.getBoundingClientRect();
 
-                const [instance] = Draggable.create(element, {
-                    trigger: header,
-                    bounds: "main",
-
-                    onPress: () => {
-                        focusWindow(windowKey);
-                    },
-                });
-
-                return () => {
-                    instance?.kill();
+                dragData = {
+                    startX: event.clientX,
+                    startY: event.clientY,
+                    left: rect.left,
+                    top: rect.top,
                 };
-            },
-            {
-                dependencies: [isOpen, isMinimized],
-                scope: windowRef,
+
+                element.style.left = `${rect.left}px`;
+                element.style.top = `${rect.top}px`;
+                element.style.transform = "none";
+
+                focusWindow?.(windowKey);
+                event.preventDefault();
+            };
+
+            const handlePointerMove = (event) => {
+                if (!dragData) return;
+
+                const dx = event.clientX - dragData.startX;
+                const dy = event.clientY - dragData.startY;
+
+                const maxLeft = window.innerWidth - 100;
+                const maxTop = window.innerHeight - 80;
+
+                const left = Math.max(
+                    0,
+                    Math.min(maxLeft, dragData.left + dx)
+                );
+
+                const top = Math.max(
+                    32,
+                    Math.min(maxTop, dragData.top + dy)
+                );
+
+                element.style.left = `${left}px`;
+                element.style.top = `${top}px`;
+            };
+
+            const handlePointerUp = () => {
+                dragData = null;
+            };
+
+            element.addEventListener("pointerdown", handlePointerDown);
+            window.addEventListener("pointermove", handlePointerMove);
+            window.addEventListener("pointerup", handlePointerUp);
+
+            return () => {
+                element.removeEventListener("pointerdown", handlePointerDown);
+                window.removeEventListener("pointermove", handlePointerMove);
+                window.removeEventListener("pointerup", handlePointerUp);
+            };
+        }, [focusWindow, windowKey, isMaximized]);
+
+        useEffect(() => {
+            if (!wrapperRef.current) return;
+
+            if (position && !isMaximized) {
+                wrapperRef.current.style.left = `${position.x}px`;
+                wrapperRef.current.style.top = `${position.y}px`;
+                wrapperRef.current.style.transform = "none";
             }
-        );
+        }, [position, isMaximized]);
+
+        if (!isOpen || isMinimized) return null;
 
         return (
             <section
-                id={windowKey}
-                ref={windowRef}
+                ref={wrapperRef}
+                data-window-wrapper={windowKey}
+                onMouseDown={() => focusWindow?.(windowKey)}
                 style={{
+                    position: "absolute",
+                    left: position ? `${position.x}px` : "50%",
+                    top: position ? `${position.y}px` : "50%",
+                    transform: position ? "none" : "translate(-50%, -50%)",
                     zIndex,
-                    display: isOpen && !isMinimized ? "block" : "none",
+                    display: "block",
+                    maxWidth: "calc(100vw - 8px)",
+                    maxHeight: "calc(100vh - 75px)",
+                    ...(isMaximized
+                        ? {
+                            left: "8px",
+                            top: "36px",
+                            width: "calc(100vw - 16px)",
+                            height: "calc(100vh - 110px)",
+                            transform: "none",
+                        }
+                        : {}),
                 }}
-                className={`absolute ${
-                    isMaximized ? "inset-0" : ""
-                }`}
-                onMouseDown={() => focusWindow(windowKey)}
+                className="window-wrapper"
             >
-                <Component
-                    {...props}
-                    data={windowState?.data ?? null}
-                />
+                <Component {...props} data={windowState?.data ?? props.data} />
             </section>
         );
     };

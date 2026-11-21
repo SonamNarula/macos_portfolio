@@ -2,95 +2,141 @@
 import { useState } from "react";
 import WindowWrapper from "../components/WindowWrapper";
 import WindowControls from "../components/WindowControls";
-import { photosLinks, gallery } from "../constants";
-import { Images, Heart, Folder, Clock, Sparkles } from "lucide-react";
+import {
+    Images,
+    Heart,
+    Folder,
+    Clock,
+    Sparkles,
+} from "lucide-react";
+
+const photoFiles = [
+    { name: "Sonam 01", src: "/images/sonam%20narula%201.PNG" },
+    { name: "Sonam 02", src: "/images/sonam%20narula%202.jpg" },
+    { name: "Sonam 03", src: "/images/sonam%20narula%203.jpg" },
+    { name: "Sonam 04", src: "/images/sonam%20narula%204.JPG" },
+    { name: "Sonam 05", src: "/images/sonam%20narula%205.JPG" },
+    { name: "Sonam 06", src: "/images/sonam%20narula%206.JPG" },
+];
+
+const tabs = [
+    { name: "Library", Icon: Images },
+    { name: "Memories", Icon: Sparkles },
+    { name: "Projects", Icon: Folder },
+    { name: "Moments", Icon: Clock },
+    { name: "Favorites", Icon: Heart },
+];
 
 const Photos = () => {
     const [activeTab, setActiveTab] = useState("Library");
+    const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-    const icons = {
-        Library: Images,
-        Memories: Sparkles,
-        Projects: Folder,
-        Moments: Clock,
-        Favorites: Heart,
-    };
+    const visiblePhotos =
+        activeTab === "Favorites"
+            ? photoFiles.slice(0, 2)
+            : activeTab === "Projects"
+                ? []
+                : photoFiles;
 
     return (
-        <div className="flex h-full min-h-[420px] w-[min(850px,90vw)] overflow-hidden rounded-xl bg-white text-gray-800">
-            <aside className="w-48 shrink-0 border-r border-gray-200 bg-gray-50 p-4">
-                <div className="mb-6">
+        <div
+            className="flex h-[min(650px,78vh)] w-[min(850px,90vw)] overflow-hidden rounded-xl bg-white text-gray-800 shadow-2xl"
+        >
+            <aside className="flex w-[175px] shrink-0 flex-col border-r border-gray-200 bg-[#f5f5f7] p-3">
+                <div className="mb-7 pt-1">
                     <WindowControls target="photos" />
                 </div>
 
-                <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-400">
-                    Library
-                </h2>
+                <p className="mb-3 px-2 text-[10px] font-bold tracking-wider text-gray-400">
+                    LIBRARY
+                </p>
 
-                <div className="space-y-1">
-                    {photosLinks.map((item) => {
-                        const Icon = icons[item.title] || Images;
+                {tabs.map(({ name, Icon }) => (
+                    <button
+                        key={name}
+                        onClick={() => {
+                            setActiveTab(name);
+                            setSelectedPhoto(null);
+                        }}
+                        className={`mb-1 flex items-center gap-3 rounded-lg px-3 py-2 text-left text-xs ${
+                            activeTab === name
+                                ? "bg-blue-100 font-semibold text-blue-600"
+                                : "text-gray-700 hover:bg-gray-200"
+                        }`}
+                    >
+                        <Icon size={16} />
+                        {name}
+                    </button>
+                ))}
 
-                        return (
-                            <button
-                                key={item.id}
-                                onClick={() => setActiveTab(item.title)}
-                                className={`flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition ${
-                                    activeTab === item.title
-                                        ? "bg-blue-100 font-medium text-blue-700"
-                                        : "text-gray-600 hover:bg-gray-200"
-                                }`}
-                            >
-                                <Icon size={16} />
-                                {item.title}
-                            </button>
-                        );
-                    })}
+                <div className="mt-auto border-t border-gray-200 pt-3 text-[10px] text-gray-400">
+                    SonamOS Photos
                 </div>
             </aside>
 
-            <main className="min-w-0 flex-1 overflow-y-auto p-5 sm:p-7">
-                <div className="mb-6">
-                    <p className="text-xs font-medium uppercase tracking-widest text-gray-400">
-                        Photos
-                    </p>
+            <main className="flex min-w-0 flex-1 flex-col">
+                <header className="flex h-[54px] shrink-0 items-center justify-between border-b border-gray-100 px-5">
+                    <h2 className="text-sm font-semibold">{activeTab}</h2>
+                    <span className="text-xs text-gray-400">
+            {visiblePhotos.length} photos
+          </span>
+                </header>
 
-                    <h1 className="mt-1 text-2xl font-semibold tracking-tight">
-                        {activeTab}
-                    </h1>
-
-                    <p className="mt-1 text-sm text-gray-500">
-                        A collection of projects, memories and moments.
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                    {gallery.map((photo) => (
-                        <div
-                            key={photo.id}
-                            className="group aspect-square overflow-hidden rounded-xl bg-gray-100"
-                        >
-                            <img
-                                src={photo.img}
-                                alt={`Gallery image ${photo.id}`}
-                                loading="lazy"
-                                className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-                            />
+                <div className="min-h-0 flex-1 overflow-auto p-5">
+                    {visiblePhotos.length > 0 ? (
+                        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                            {visiblePhotos.map((photo) => (
+                                <button
+                                    key={photo.src}
+                                    onClick={() => setSelectedPhoto(photo)}
+                                    className={`overflow-hidden rounded-xl bg-gray-100 text-left transition hover:shadow-lg ${
+                                        selectedPhoto?.src === photo.src
+                                            ? "ring-2 ring-blue-500"
+                                            : ""
+                                    }`}
+                                >
+                                    <img
+                                        src={photo.src}
+                                        alt={photo.name}
+                                        loading="lazy"
+                                        className="aspect-square w-full object-cover"
+                                        onError={(event) => {
+                                            event.currentTarget.alt = "Image could not load";
+                                        }}
+                                    />
+                                    <p className="px-3 py-2 text-xs text-gray-600">
+                                        {photo.name}
+                                    </p>
+                                </button>
+                            ))}
                         </div>
-                    ))}
+                    ) : (
+                        <div className="flex h-full flex-col items-center justify-center text-gray-400">
+                            <Folder size={40} />
+                            <p className="mt-3 text-sm">No photos in this album yet</p>
+                        </div>
+                    )}
                 </div>
-
-                {gallery.length === 0 && (
-                    <div className="flex h-48 flex-col items-center justify-center text-gray-400">
-                        <Images size={36} />
-                        <p className="mt-3 text-sm">No photos available yet.</p>
-                    </div>
-                )}
-
-                <p className="mt-5 text-xs text-gray-400">
-                    {gallery.length} items
-                </p>
             </main>
+
+            {selectedPhoto && (
+                <div
+                    className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 p-8"
+                    onClick={() => setSelectedPhoto(null)}
+                >
+                    <button
+                        className="absolute right-5 top-5 text-2xl text-white"
+                        onClick={() => setSelectedPhoto(null)}
+                    >
+                        ×
+                    </button>
+                    <img
+                        src={selectedPhoto.src}
+                        alt={selectedPhoto.name}
+                        className="max-h-full max-w-full rounded-lg object-contain"
+                    />
+                </div>
+            )}
         </div>
     );
 };

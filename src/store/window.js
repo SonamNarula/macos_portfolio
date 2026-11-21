@@ -1,4 +1,3 @@
-
 import { create } from "zustand";
 
 const useWindowStore = create((set) => ({
@@ -19,7 +18,7 @@ const useWindowStore = create((set) => ({
                         isMinimized: false,
                         isMaximized: false,
                         zIndex: nextZIndex,
-                        data,
+                        data: data ?? state.windows[windowKey]?.data ?? null,
                     },
                 },
                 activeWindow: windowKey,
