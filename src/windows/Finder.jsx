@@ -37,7 +37,6 @@ const Finder = () => {
   const [selectedId, setSelectedId] = useState(null);
 
   const openWindow = useWindowStore((state) => state.openWindow);
-
   const current = history[historyIndex] || initialEntry;
   const currentFolder = current.folder || locations.work;
   const items = currentFolder?.children || [];
@@ -74,13 +73,11 @@ const Finder = () => {
 
   const selectSidebar = (id) => {
     const folder = locations[id];
-    if (!folder) return;
-    pushFolder(folder, id);
+    if (folder) pushFolder(folder, id);
   };
 
   const openItem = (item) => {
     if (!item) return;
-
     if (isFolder(item)) {
       pushFolder(item);
       return;
@@ -104,69 +101,6 @@ const Finder = () => {
     }
     return null;
   };
-
-  const beginResize = (event, direction) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const frame = event.currentTarget.closest(".finder-window");
-    const wrapper = frame?.closest("[data-window-wrapper]");
-    if (!frame || !wrapper) return;
-
-    const start = wrapper.getBoundingClientRect();
-    const startX = event.clientX;
-    const startY = event.clientY;
-    const minW = Math.min(520, window.innerWidth - 20);
-    const minH = Math.min(360, window.innerHeight - 120);
-    const maxW = window.innerWidth - 20;
-    const maxH = window.innerHeight - 120;
-
-    const onMove = (moveEvent) => {
-      const dx = moveEvent.clientX - startX;
-      const dy = moveEvent.clientY - startY;
-
-      let width = start.width;
-      let height = start.height;
-
-      if (direction.includes("r")) width = start.width + dx;
-      if (direction.includes("l")) width = start.width - dx;
-      if (direction.includes("b")) height = start.height + dy;
-      if (direction.includes("t")) height = start.height - dy;
-
-      width = Math.max(minW, Math.min(maxW, width));
-      height = Math.max(minH, Math.min(maxH, height));
-
-      const left = direction.includes("l") ? start.right - width : start.left;
-      const top = direction.includes("t") ? start.bottom - height : start.top;
-
-      wrapper.style.width = `${width}px`;
-      wrapper.style.height = `${height}px`;
-      wrapper.style.left = `${Math.max(0, Math.min(left, window.innerWidth - width))}px`;
-      wrapper.style.top = `${Math.max(36, Math.min(top, window.innerHeight - height))}px`;
-      wrapper.style.transform = "none";
-    };
-
-    const onUp = () => {
-      window.removeEventListener("pointermove", onMove);
-      window.removeEventListener("pointerup", onUp);
-      window.removeEventListener("pointercancel", onUp);
-    };
-
-    window.addEventListener("pointermove", onMove);
-    window.addEventListener("pointerup", onUp);
-    window.addEventListener("pointercancel", onUp);
-  };
-
-  const handles = [
-    ["n", "inset-x-4 top-0 h-2 cursor-n-resize"],
-    ["s", "inset-x-4 bottom-0 h-2 cursor-s-resize"],
-    ["e", "right-0 inset-y-4 w-2 cursor-e-resize"],
-    ["w", "left-0 inset-y-4 w-2 cursor-w-resize"],
-    ["nw", "left-0 top-0 h-4 w-4 cursor-nwse-resize"],
-    ["ne", "right-0 top-0 h-4 w-4 cursor-nesw-resize"],
-    ["sw", "left-0 bottom-0 h-4 w-4 cursor-nesw-resize"],
-    ["se", "right-0 bottom-0 h-4 w-4 cursor-nwse-resize"],
-  ];
 
   return (
     <div className="finder-window relative flex h-full w-full min-h-0 flex-col overflow-hidden rounded-[13px] bg-white text-gray-800 shadow-2xl">
@@ -192,7 +126,6 @@ const Finder = () => {
           <p className="mb-3 px-2 pt-2 text-[10px] font-bold tracking-[1.2px] text-gray-400">
             FAVOURITES
           </p>
-
           {SIDEBAR.map(({ id, label, Icon }) => (
             <button
               key={id}
@@ -208,42 +141,24 @@ const Finder = () => {
               {label}
             </button>
           ))}
-
           <div className="mt-auto border-t border-gray-200 px-2 pt-3 text-[10px] text-gray-400">
             SonamOS Finder
           </div>
         </aside>
 
         <main className="flex min-w-0 flex-1 flex-col bg-white">
-          <div
-            className="flex h-[46px] shrink-0 items-center justify-between border-b border-gray-100 px-5"
-            data-no-drag
-          >
+          <div className="flex h-[46px] shrink-0 items-center justify-between border-b border-gray-100 px-5" data-no-drag>
             <div className="flex items-center gap-4">
-              <button
-                type="button"
-                onClick={goBack}
-                disabled={historyIndex === 0}
-                className="text-gray-500 hover:text-blue-600 disabled:opacity-30"
-                aria-label="Back"
-              >
+              <button type="button" onClick={goBack} disabled={historyIndex === 0}
+                className="text-gray-500 hover:text-blue-600 disabled:opacity-30" aria-label="Back">
                 <ChevronLeft size={19} />
               </button>
-              <button
-                type="button"
-                onClick={goForward}
-                disabled={historyIndex >= history.length - 1}
-                className="text-gray-500 hover:text-blue-600 disabled:opacity-30"
-                aria-label="Forward"
-              >
+              <button type="button" onClick={goForward} disabled={historyIndex >= history.length - 1}
+                className="text-gray-500 hover:text-blue-600 disabled:opacity-30" aria-label="Forward">
                 <ChevronRight size={19} />
               </button>
-              <button
-                type="button"
-                onClick={goHome}
-                className="text-gray-500 hover:text-blue-600"
-                aria-label="Projects home"
-              >
+              <button type="button" onClick={goHome}
+                className="text-gray-500 hover:text-blue-600" aria-label="Projects home">
                 <House size={17} />
               </button>
             </div>
@@ -262,30 +177,19 @@ const Finder = () => {
                   const folder = isFolder(item);
 
                   return (
-                    <button
-                      key={itemId}
-                      type="button"
+                    <button key={itemId} type="button"
                       onClick={() => setSelectedId(itemId)}
                       onDoubleClick={() => openItem(item)}
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter") openItem(item);
-                      }}
+                      onKeyDown={(event) => { if (event.key === "Enter") openItem(item); }}
                       className={`flex min-h-[112px] min-w-0 flex-col items-center rounded-xl px-2 py-3 transition ${
                         selected ? "bg-blue-50 ring-1 ring-blue-300" : "hover:bg-gray-100"
                       }`}
-                      title="Double-click to open"
-                    >
+                      title="Double-click to open">
                       <div className="flex h-[62px] w-full items-center justify-center">
                         {icon ? (
-                          <img
-                            src={icon}
-                            alt=""
-                            draggable="false"
+                          <img src={icon} alt="" draggable="false"
                             className="h-[56px] w-[66px] object-contain"
-                            onError={(event) => {
-                              event.currentTarget.style.display = "none";
-                            }}
-                          />
+                            onError={(event) => { event.currentTarget.style.display = "none"; }} />
                         ) : folder ? (
                           <Folder size={40} strokeWidth={1.4} className="text-blue-500" />
                         ) : item.fileType === "pdf" ? (
@@ -319,16 +223,6 @@ const Finder = () => {
           </footer>
         </main>
       </div>
-
-      {handles.map(([direction, className]) => (
-        <div
-          key={direction}
-          onPointerDown={(event) => beginResize(event, direction)}
-          className={`absolute z-[60] ${className}`}
-          style={{ touchAction: "none", userSelect: "none" }}
-          aria-label={`Resize from ${direction}`}
-        />
-      ))}
     </div>
   );
 };
