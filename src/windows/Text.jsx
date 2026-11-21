@@ -18,6 +18,7 @@ const Text = ({ data }) => {
   const live = data?.live || data?.liveUrl || data?.deploymentUrl || null;
   const isExperience = ["Leadership / Mentoring", "Campus / Innovation", "Community"].includes(data?.category);
   const paragraphs = Array.isArray(description) ? description : [description];
+  const experienceImages = Array.isArray(data?.imageUrls) ? data.imageUrls : [];
 
   return (
     <div className="relative flex h-full w-full min-w-0 max-w-full flex-col overflow-hidden rounded-xl bg-white text-gray-800 shadow-2xl">
@@ -29,11 +30,24 @@ const Text = ({ data }) => {
 
       <div className="absolute inset-x-0 bottom-0 top-14 overflow-y-auto overflow-x-hidden overscroll-contain" style={{ WebkitOverflowScrolling: "touch" }}>
         <div className="mx-auto block w-full min-w-0 max-w-3xl px-4 py-6 sm:px-8 sm:py-9">
-          {data?.imageUrl && (
-            <div className="mb-7 w-full overflow-hidden rounded-2xl border border-gray-200 bg-slate-950">
-              <img src={data.imageUrl} alt={title} className="h-40 w-full object-cover sm:h-56" />
+          {experienceImages.length > 0 ? (
+            <div className={`mb-7 grid w-full min-w-0 gap-3 ${experienceImages.length > 1 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-1"}`}>
+              {experienceImages.map((src, index) => (
+                <div key={src} className="min-w-0 overflow-hidden rounded-2xl border border-gray-200 bg-gray-50">
+                  <img
+                    src={src}
+                    alt={`${title} experience photo ${index + 1}`}
+                    loading="lazy"
+                    className="h-auto max-h-[420px] w-full object-contain"
+                  />
+                </div>
+              ))}
             </div>
-          )}
+          ) : data?.imageUrl ? (
+            <div className="mb-7 w-full overflow-hidden rounded-2xl border border-gray-200 bg-gray-50">
+              <img src={data.imageUrl} alt={title} loading="lazy" className="h-auto max-h-[420px] w-full object-contain" />
+            </div>
+          ) : null}
 
           <div className="mb-7 min-w-0">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600">
