@@ -4,37 +4,37 @@ import gsap from "gsap";
 const LetterHover = ({ children, className = "" }) => {
   const lineRef = useRef(null);
 
-  const animateLetters = () => {
-    const letters = lineRef.current?.querySelectorAll(".hover-letter");
-    if (!letters?.length) return;
-
-    gsap.killTweensOf(letters);
-    gsap.set(letters, { y: 0, scale: 1, color: "inherit", fontWeight: 600 });
-
-    gsap.to(letters, {
-      y: -5,
-      scale: 1.1,
-      color: "#bfdbfe",
-      fontWeight: 900,
-      duration: 0.18,
-      stagger: { each: 0.045, from: "start" },
-      ease: "back.out(2)",
-      yoyo: true,
-      repeat: 1,
-      repeatDelay: 0.08,
-    });
+  const animateLetter = (event) => {
+    const letter = event.currentTarget;
+    gsap.killTweensOf(letter);
+    gsap.fromTo(
+      letter,
+      { y: 0, scale: 1, color: "inherit", fontWeight: 600 },
+      {
+        y: -5,
+        scale: 1.12,
+        color: "#bfdbfe",
+        fontWeight: 900,
+        duration: 0.18,
+        ease: "back.out(2)",
+        yoyo: true,
+        repeat: 1,
+        repeatDelay: 0.06,
+        overwrite: true,
+      }
+    );
   };
 
   return (
     <span
       ref={lineRef}
-      onMouseEnter={animateLetters}
       className={`inline-block cursor-default ${className}`}
       aria-label={children}
     >
       {Array.from(children).map((character, index) => (
         <span
           key={index}
+          onMouseEnter={animateLetter}
           className="hover-letter inline-block"
           style={{ whiteSpace: character === " " ? "pre" : "normal" }}
           aria-hidden="true"
