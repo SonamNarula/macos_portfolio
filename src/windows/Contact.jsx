@@ -43,8 +43,12 @@ const Contact = () => {
 
       <main className="min-h-0 flex-1 space-y-5 overflow-y-auto p-6">
         <div>
-          <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100 text-blue-600">
-            <Mail size={30} />
+          <div className="mb-4 h-28 w-28 overflow-hidden rounded-3xl border border-gray-200 bg-gray-100 shadow-sm">
+            <img
+              src="/images/sonam%20narula%207.JPG"
+              alt="Sonam Narula"
+              className="h-full w-full object-cover object-center"
+            />
           </div>
           <h3 className="text-xl font-bold">Let's Connect</h3>
           <p className="mt-1 text-sm leading-6 text-gray-500">
