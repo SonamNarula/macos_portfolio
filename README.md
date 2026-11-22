@@ -12,7 +12,7 @@ A fully interactive macOS-style desktop in the browser. Open folders, launch app
 
 <br/>
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-sonamnarula.dev-2f5bff?style=for-the-badge&logo=safari&logoColor=white)](https://sonamnarula.dev)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-sonamnarula--portfolio.vercel.app-2f5bff?style=for-the-badge&logo=safari&logoColor=white)](https://sonamnarula-portfolio.vercel.app)
 [![GitHub Stars](https://img.shields.io/github/stars/SonamNarula/macos_portfolio?style=for-the-badge&color=f5c518&logo=github)](https://github.com/SonamNarula/macos_portfolio/stargazers)
 [![Forks](https://img.shields.io/github/forks/SonamNarula/macos_portfolio?style=for-the-badge&logo=github)](https://github.com/SonamNarula/macos_portfolio/network/members)
 [![Issues](https://img.shields.io/github/issues/SonamNarula/macos_portfolio?style=for-the-badge)](https://github.com/SonamNarula/macos_portfolio/issues)
@@ -43,6 +43,8 @@ A fully interactive macOS-style desktop in the browser. Open folders, launch app
 ---
 
 ## About
+
+**Live at [sonamnarula-portfolio.vercel.app](https://sonamnarula-portfolio.vercel.app)**
 
 Hi, I'm **Sonam Narula** — a B.Tech CSE student at JECRC University (2027) who loves **DSA, competitive programming and AI/ML**, and who built a very particular kind of portfolio: one that behaves like an operating system.
 
@@ -181,6 +183,7 @@ System status: Online
 | Build tool | Vite |
 | Linting | ESLint |
 | Tooling | `jsconfig.json` for editor/path support |
+| Deployment | [Vercel](https://sonamnarula-portfolio.vercel.app) |
 
 Everything runs client-side: the desktop, window manager and all apps ship as a static Vite build.
 
