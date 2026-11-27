@@ -229,21 +229,7 @@ const WORK_LOCATION = {
       live: "https://trackify.wasmer.app",
     }),
 
-    projectFolder({
-      id: 13,
-      name: "NeuroNews",
-      category: "AI / Exploration",
-      description: [
-        "NeuroNews is an AI-focused news and information experience listed in this portfolio. The public portfolio repository identifies it as an AI-focused news experience.",
-        "A matching public source repository and technical README could not be verified during this review. To avoid inventing implementation details, the exact feature set and technology stack are not claimed here.",
-      ],
-      highlights: [
-        "AI-focused news and information experience",
-        "Implementation details pending source-repository verification",
-      ],
-      techStack: ["Technology details not yet verified"],
-      github: null,
-    }),
+
 
     projectFolder({
       id: 16,
