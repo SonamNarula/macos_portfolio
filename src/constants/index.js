@@ -246,6 +246,55 @@ const WORK_LOCATION = {
     }),
 
     projectFolder({
+      id: 16,
+      name: "CardioSense",
+      category: "Machine Learning / Healthcare",
+      description: [
+        "CardioSense is an educational heart disease prediction project built around a tabular health dataset. It combines exploratory analysis, a reproducible scikit-learn training pipeline, model comparison, and a Flask interface for entering patient attributes and viewing a prediction.",
+        "The training pipeline removes exact duplicate records, applies StandardScaler to numerical features and OneHotEncoder to categorical features through a ColumnTransformer, and compares K-Nearest Neighbors, Decision Tree, and Random Forest classifiers. Model comparison uses stratified 5-fold cross-validation on the training split, with mean ROC-AUC used to select the candidate model.",
+        "Random Forest was selected with a mean cross-validation ROC-AUC of 0.8995. On the separate held-out test split, the saved pipeline recorded 0.7869 accuracy, 0.8169 F1 score, and 0.8983 ROC-AUC. These are results from one split of a small dataset, not clinical validation.",
+        "The Flask application accepts the 13 dataset input features, calls the shared prediction module, and returns the predicted class with the positive-class probability. The fitted preprocessing and classifier pipeline is serialized with Joblib for reuse.",
+        "CardioSense is a learning project and must not be used for diagnosis or medical decision-making."
+      ],
+      highlights: [
+        "Dataset inspection, missing-value checks and exact-duplicate removal",
+        "ColumnTransformer pipeline with StandardScaler and OneHotEncoder",
+        "Comparison of KNN, Decision Tree and Random Forest classifiers",
+        "Stratified 5-fold cross-validation and held-out test evaluation",
+        "Accuracy, precision, recall, F1, ROC-AUC and confusion-matrix reporting",
+        "Reusable preprocessing and model pipeline saved with Joblib",
+        "Flask form for patient attributes and prediction output"
+      ],
+      architecture: [
+        "Pandas dataset loading and cleaning",
+        "scikit-learn ColumnTransformer and Pipeline for preprocessing",
+        "KNN, Decision Tree and Random Forest model comparison",
+        "Stratified 5-fold cross-validation and 80/20 stratified train/test split",
+        "Joblib-serialized model pipeline",
+        "Flask application with HTML/CSS form interface"
+      ],
+      techStack: [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "scikit-learn",
+        "StandardScaler",
+        "OneHotEncoder",
+        "ColumnTransformer",
+        "Random Forest",
+        "K-Nearest Neighbors",
+        "Decision Tree",
+        "Joblib",
+        "Flask",
+        "HTML",
+        "CSS",
+        "Matplotlib",
+        "Seaborn"
+      ],
+      github: "https://github.com/SonamNarula/CardioSense",
+    }),
+
+    projectFolder({
       id: 14,
       name: "CodeFusion",
       category: "Collaborative Development",
@@ -453,6 +502,7 @@ export const locations = {
   codefusion: WORK_LOCATION.children.find((project) => project.name === "CodeFusion"),
   acornfolio: WORK_LOCATION.children.find((project) => project.name === "AcornFolio"),
   hirelens: WORK_LOCATION.children.find((project) => project.name === "HireLens"),
+  cardiosense: WORK_LOCATION.children.find((project) => project.name === "CardioSense"),
 };
 
 // Safari projects list: use the same verified project data without PNG previews.
