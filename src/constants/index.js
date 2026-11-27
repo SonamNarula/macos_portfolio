@@ -108,7 +108,34 @@ projectFolder({
         "Seaborn"
       ],
       github: "https://github.com/SonamNarula/CardioSense",
-    })
+    }),
+
+    projectFolder({
+      id: 17,
+      name: "Chromatica",
+      category: "Deep Learning / Computer Vision",
+      description: [
+        "Chromatica is an image colorization project that uses a pretrained deep neural network to add color to grayscale images. It is built with Python, OpenCV's DNN module and NumPy.",
+        "The pipeline converts images into the CIE LAB color space and uses a pretrained Caffe model based on the colorization approach by Zhang et al. (ECCV 2016). The network predicts quantized chrominance values across 313 color bins, which are combined with the luminance channel to produce a colorized output.",
+        "The project focuses on understanding an end-to-end computer vision inference pipeline, image preprocessing, color-space conversion and model integration. Large pretrained model weights are kept out of the Git repository."
+      ],
+      highlights: [
+        "Grayscale image colorization using a pretrained deep learning model",
+        "OpenCV DNN integration with Caffe model files",
+        "CIE LAB color-space conversion and image preprocessing",
+        "313 quantized color-bin predictions for chrominance",
+        "Inference pipeline using Python, OpenCV and NumPy"
+      ],
+      architecture: [
+        "Python image loading and preprocessing",
+        "OpenCV DNN loading of the pretrained Caffe network",
+        "CIE LAB luminance and chrominance processing",
+        "Neural-network inference over 313 quantized color bins",
+        "Reconstruction of the colorized image"
+      ],
+      techStack: ["Python", "OpenCV", "OpenCV DNN", "NumPy", "Caffe", "CIE LAB", "Deep Learning", "Computer Vision"],
+      github: "https://github.com/SonamNarula/chromatica-image-colorization",
+    }),
 
     projectFolder({
       id: 11,
