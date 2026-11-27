@@ -10,7 +10,7 @@ const Resume = () => {
           Sonam_Narula_Resume.pdf
         </h2>
         <a
-          href="/files/Sonam_Narula_Resume_Updated%20(1).pdf"
+          href="/files/Sonam_Narula_Resume.pdf?v=20261127"
           download="Sonam_Narula_Resume.pdf"
           className="rounded-md px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-200"
         >
@@ -19,7 +19,7 @@ const Resume = () => {
       </div>
 
       <iframe
-        src="/files/Sonam_Narula_Resume_Updated%20(1).pdf"
+        src="/files/Sonam_Narula_Resume.pdf?v=20261127"
         title="Sonam Narula Resume"
         className="h-full w-full flex-1 bg-gray-100"
       />
