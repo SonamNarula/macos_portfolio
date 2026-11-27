@@ -61,32 +61,55 @@ const projectFolder = ({
   role,
   // Keep one detail document only. No decorative project PNG files.
   children: [
-    {
-      id: id * 10 + 1,
-      name: `${name}.txt`,
-      icon: null,
-      kind: "file",
-      fileType: "txt",
-      subtitle: name,
-      category,
-      description,
-      github,
-      techStack,
-      live,
-      highlights,
-      architecture,
-      role,
-    },
-  ],
-});
+    projectFolder({
+      id: 16,
+      name: "CardioSense",
+      category: "Machine Learning / Healthcare",
+      description: [
+        "CardioSense is an educational heart disease prediction project built around a tabular health dataset. It combines exploratory analysis, a reproducible scikit-learn training pipeline, model comparison, and a Flask interface for entering patient attributes and viewing a prediction.",
+        "The training pipeline removes exact duplicate records, applies StandardScaler to numerical features and OneHotEncoder to categorical features through a ColumnTransformer, and compares K-Nearest Neighbors, Decision Tree, and Random Forest classifiers. Model comparison uses stratified 5-fold cross-validation on the training split, with mean ROC-AUC used to select the candidate model.",
+        "Random Forest was selected with a mean cross-validation ROC-AUC of 0.8995. On the separate held-out test split, the saved pipeline recorded 0.7869 accuracy, 0.8169 F1 score, and 0.8983 ROC-AUC. These are results from one split of a small dataset, not clinical validation.",
+        "The Flask application accepts the 13 dataset input features, calls the shared prediction module, and returns the predicted class with the positive-class probability. The fitted preprocessing and classifier pipeline is serialized with Joblib for reuse.",
+        "CardioSense is a learning project and must not be used for diagnosis or medical decision-making."
+      ],
+      highlights: [
+        "Dataset inspection, missing-value checks and exact-duplicate removal",
+        "ColumnTransformer pipeline with StandardScaler and OneHotEncoder",
+        "Comparison of KNN, Decision Tree and Random Forest classifiers",
+        "Stratified 5-fold cross-validation and held-out test evaluation",
+        "Accuracy, precision, recall, F1, ROC-AUC and confusion-matrix reporting",
+        "Reusable preprocessing and model pipeline saved with Joblib",
+        "Flask form for patient attributes and prediction output"
+      ],
+      architecture: [
+        "Pandas dataset loading and cleaning",
+        "scikit-learn ColumnTransformer and Pipeline for preprocessing",
+        "KNN, Decision Tree and Random Forest model comparison",
+        "Stratified 5-fold cross-validation and 80/20 stratified train/test split",
+        "Joblib-serialized model pipeline",
+        "Flask application with HTML/CSS form interface"
+      ],
+      techStack: [
+        "Python",
+        "Pandas",
+        "NumPy",
+        "scikit-learn",
+        "StandardScaler",
+        "OneHotEncoder",
+        "ColumnTransformer",
+        "Random Forest",
+        "K-Nearest Neighbors",
+        "Decision Tree",
+        "Joblib",
+        "Flask",
+        "HTML",
+        "CSS",
+        "Matplotlib",
+        "Seaborn"
+      ],
+      github: "https://github.com/SonamNarula/CardioSense",
+    })
 
-const WORK_LOCATION = {
-  id: 1,
-  type: "work",
-  name: "Projects",
-  icon: "/icons/work.svg",
-  kind: "folder",
-  children: [
     projectFolder({
       id: 11,
       name: "HireLens",
@@ -231,54 +254,56 @@ const WORK_LOCATION = {
 
 
 
+,
+
+
+
     projectFolder({
-      id: 16,
-      name: "CardioSense",
-      category: "Machine Learning / Healthcare",
+      id: 12,
+      name: "Trackify",
+      category: "Productivity / Analytics",
       description: [
-        "CardioSense is an educational heart disease prediction project built around a tabular health dataset. It combines exploratory analysis, a reproducible scikit-learn training pipeline, model comparison, and a Flask interface for entering patient attributes and viewing a prediction.",
-        "The training pipeline removes exact duplicate records, applies StandardScaler to numerical features and OneHotEncoder to categorical features through a ColumnTransformer, and compares K-Nearest Neighbors, Decision Tree, and Random Forest classifiers. Model comparison uses stratified 5-fold cross-validation on the training split, with mean ROC-AUC used to select the candidate model.",
-        "Random Forest was selected with a mean cross-validation ROC-AUC of 0.8995. On the separate held-out test split, the saved pipeline recorded 0.7869 accuracy, 0.8169 F1 score, and 0.8983 ROC-AUC. These are results from one split of a small dataset, not clinical validation.",
-        "The Flask application accepts the 13 dataset input features, calls the shared prediction module, and returns the predicted class with the positive-class probability. The fitted preprocessing and classifier pipeline is serialized with Joblib for reuse.",
-        "CardioSense is a learning project and must not be used for diagnosis or medical decision-making."
+        "Trackify is a student productivity and placement tracking dashboard built to bring day-to-day preparation into one place: tasks, study hours, DSA questions and placement applications.",
+        "The Task Manager supports priorities, filters and completion states. The Study Tracker records daily study hours and DSA questions and calculates consecutive-day streaks. The Placement Tracker represents application progress through applied, interview, selected and rejected states.",
+        "The Analytics area visualizes study hours, DSA progress, task priorities and placement outcomes through charts. The productivity coach is intentionally rule-based: a pure function reads tasks, study logs and streak data and returns explainable observations. It does not call an LLM or require an AI API key.",
+        "The current implementation uses browser localStorage for application data, so data persists across refreshes in that browser but is not synchronized across devices or isolated per account.",
       ],
       highlights: [
-        "Dataset inspection, missing-value checks and exact-duplicate removal",
-        "ColumnTransformer pipeline with StandardScaler and OneHotEncoder",
-        "Comparison of KNN, Decision Tree and Random Forest classifiers",
-        "Stratified 5-fold cross-validation and held-out test evaluation",
-        "Accuracy, precision, recall, F1, ROC-AUC and confusion-matrix reporting",
-        "Reusable preprocessing and model pipeline saved with Joblib",
-        "Flask form for patient attributes and prediction output"
+        "Task manager with priority tags, filters and completion states",
+        "Study tracker for hours, DSA questions and consecutive-day streaks",
+        "Placement tracker with applied, interview, selected and rejected stages",
+        "Analytics charts for study, DSA, task priorities and placement outcomes",
+        "Rule-based productivity coach with explainable thresholds",
+        "Light and dark themes",
+        "Firebase Authentication",
+        "LocalStorage persistence in the current implementation",
       ],
       architecture: [
-        "Pandas dataset loading and cleaning",
-        "scikit-learn ColumnTransformer and Pipeline for preprocessing",
-        "KNN, Decision Tree and Random Forest model comparison",
-        "Stratified 5-fold cross-validation and 80/20 stratified train/test split",
-        "Joblib-serialized model pipeline",
-        "Flask application with HTML/CSS form interface"
+        "React + TypeScript single-page application",
+        "Vite development and production bundling",
+        "App-level state and handlers shared with presentational pages",
+        "useLocalStorage hook for browser persistence",
+        "Firebase Authentication and ProtectedRoute",
+        "Chart.js visualizations and pure-function productivity insights",
       ],
       techStack: [
-        "Python",
-        "Pandas",
-        "NumPy",
-        "scikit-learn",
-        "StandardScaler",
-        "OneHotEncoder",
-        "ColumnTransformer",
-        "Random Forest",
-        "K-Nearest Neighbors",
-        "Decision Tree",
-        "Joblib",
-        "Flask",
-        "HTML",
-        "CSS",
-        "Matplotlib",
-        "Seaborn"
+        "React 18",
+        "TypeScript",
+        "Vite",
+        "React Router",
+        "Chart.js",
+        "Firebase Authentication",
+        "CSS custom properties",
+        "LocalStorage",
+        "Custom React hooks",
       ],
-      github: "https://github.com/SonamNarula/CardioSense",
+      github: "https://github.com/SonamNarula/Trackify-college-minor-project",
+      live: "https://trackify.wasmer.app",
     }),
+
+
+
+,
 
     projectFolder({
       id: 14,
