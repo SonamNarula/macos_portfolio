@@ -9,7 +9,13 @@ const Resume = () => {
         <h2 className="flex-1 text-center text-sm font-semibold text-gray-700">
           Sonam_Narula_Resume.pdf
         </h2>
-        <div className="w-10" />
+        <a
+          href="/files/Sonam_Narula_Resume_Updated%20(1).pdf"
+          download="Sonam_Narula_Resume.pdf"
+          className="rounded-md px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-200"
+        >
+          Download
+        </a>
       </div>
 
       <iframe
