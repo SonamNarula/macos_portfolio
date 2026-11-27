@@ -474,6 +474,8 @@ export const locations = {
   acornfolio: WORK_LOCATION.children.find((project) => project.name === "AcornFolio"),
   hirelens: WORK_LOCATION.children.find((project) => project.name === "HireLens"),
   cardiosense: WORK_LOCATION.children.find((project) => project.name === "CardioSense"),
+  chromatica: WORK_LOCATION.children.find((project) => project.name === "Chromatica"),
+  trackify: WORK_LOCATION.children.find((project) => project.name === "Trackify"),
 };
 
 // Safari projects list: use the same verified project data without PNG previews.
