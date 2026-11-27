@@ -36,32 +36,23 @@ const socials = [
 ];
 
 const projectFolder = ({
-  id,
-  name,
-  description,
-  github,
-  techStack,
-  live = null,
-  category = "Project",
-  highlights = [],
-  architecture = [],
-  role = null,
+  id, name, description, github, techStack, live = null,
+  category = "Project", highlights = [], architecture = [], role = null,
 }) => ({
-  id,
-  name,
-  icon: "/images/folder.png",
+  id, name, icon: "/images/folder.png", kind: "folder", category,
+  description, github, techStack, live, highlights, architecture, role,
+  children: [{
+    id: id * 10 + 1, name: `${name}.txt`, icon: null, kind: "file",
+    fileType: "txt", subtitle: name, category, description, github,
+    techStack, live, highlights, architecture, role,
+  }],
+});
+
+const WORK_LOCATION = {
+  id: 1, type: "work", name: "Projects", icon: "/icons/work.svg",
   kind: "folder",
-  category,
-  description,
-  github,
-  techStack,
-  live,
-  highlights,
-  architecture,
-  role,
-  // Keep one detail document only. No decorative project PNG files.
   children: [
-projectFolder({
+    projectFolder({
       id: 16,
       name: "CardioSense",
       category: "Machine Learning / Healthcare",
@@ -109,7 +100,6 @@ projectFolder({
       ],
       github: "https://github.com/SonamNarula/CardioSense",
     }),
-
     projectFolder({
       id: 17,
       name: "Chromatica",
@@ -136,7 +126,6 @@ projectFolder({
       techStack: ["Python", "OpenCV", "OpenCV DNN", "NumPy", "Caffe", "CIE LAB", "Deep Learning", "Computer Vision"],
       github: "https://github.com/SonamNarula/chromatica-image-colorization",
     }),
-
     projectFolder({
       id: 11,
       name: "HireLens",
@@ -186,10 +175,7 @@ projectFolder({
       ],
       github: "https://github.com/SonamNarula/hirelens-nexus",
     }),
-
-
-
-projectFolder({
+    projectFolder({
       id: 15,
       name: "AcornFolio",
       category: "AI / FinTech",
@@ -237,8 +223,7 @@ projectFolder({
       ],
       github: "https://github.com/SonamNarula/AcornFolio"
     }),
-
-projectFolder({
+    projectFolder({
       id: 14,
       name: "CodeFusion",
       category: "Collaborative Development",
@@ -292,8 +277,7 @@ projectFolder({
       ],
       github: "https://github.com/SonamNarula/CodeFusion-a-collaborative-real-time-code-editor",
     }),
-
-projectFolder({
+    projectFolder({
       id: 12,
       name: "Trackify",
       category: "Productivity / Analytics",
@@ -334,8 +318,7 @@ projectFolder({
       ],
       github: "https://github.com/SonamNarula/Trackify-college-minor-project",
       live: "https://trackify.wasmer.app",
-    }),
-
+    })
   ],
 };
 
