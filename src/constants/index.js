@@ -21,12 +21,35 @@ const dockApps = [
 ];
 
 const techStack = [
-  { category: "Languages", items: ["C++", "Python", "SQL", "JavaScript"] },
-  { category: "Frontend", items: ["React.js", "TypeScript", "Vite", "Tailwind CSS"] },
-  { category: "Backend", items: ["Python", "FastAPI", "REST APIs", "Node.js", "Express"] },
-  { category: "AI / ML", items: ["Generative AI", "LLMs", "RAG", "LangChain", "Hugging Face"] },
-  { category: "Tools", items: ["Git", "GitHub", "VS Code", "Postman"] },
-  { category: "Core CS", items: ["DSA", "OOP", "DBMS", "OS", "Computer Networks"] },
+  {
+    category: "Languages",
+    items: ["C++", "Python", "JavaScript", "TypeScript", "SQL"],
+  },
+  {
+    category: "AI / ML & Computer Vision",
+    items: [
+      "scikit-learn", "Random Forest", "K-Nearest Neighbors", "Decision Tree",
+      "Cross-validation", "ROC-AUC", "OpenCV (DNN)", "Caffe Model Inference",
+      "Image Processing", "CIE LAB", "Gemini API", "Prompt Engineering",
+      "Structured JSON Output",
+    ],
+  },
+  {
+    category: "Data",
+    items: ["NumPy", "Pandas", "Matplotlib", "Seaborn", "Joblib", "PDF Text Extraction"],
+  },
+  {
+    category: "Web & Backend",
+    items: [
+      "React.js", "Node.js", "Express.js", "Flask", "Socket.io",
+      "Mongoose", "Tailwind CSS", "Vite", "Monaco Editor", "MongoDB",
+      "JWT Authentication",
+    ],
+  },
+  {
+    category: "Tools & Cloud",
+    items: ["Git", "GitHub", "Puppeteer", "Google Cloud (GCP)", "Vercel"],
+  },
 ];
 
 const socials = [
