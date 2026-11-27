@@ -19,6 +19,7 @@ const desktopProjects = [
   { name: "CodeFusion", location: "codefusion" },
   { name: "AcornFolio", location: "acornfolio" },
   { name: "HireLens", location: "hirelens" },
+  { name: "CardioSense", location: "cardiosense" },
 ];
 
 const Home = () => {
