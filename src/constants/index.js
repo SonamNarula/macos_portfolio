@@ -61,7 +61,7 @@ const projectFolder = ({
   role,
   // Keep one detail document only. No decorative project PNG files.
   children: [
-    projectFolder({
+projectFolder({
       id: 16,
       name: "CardioSense",
       category: "Machine Learning / Healthcare",
@@ -160,7 +160,57 @@ const projectFolder = ({
       github: "https://github.com/SonamNarula/hirelens-nexus",
     }),
 
-    projectFolder({
+projectFolder({
+      id: 11,
+      name: "HireLens",
+      category: "AI / Full-stack",
+      description: [
+        "HireLens is a full-stack, resume-aware AI workspace for role-specific interview preparation. A candidate uploads a PDF resume, provides a target job description and can add optional context about their goals.",
+        "The backend extracts readable resume text, combines it with the target role and sends a schema-constrained request to Gemini. The generated report is structured and persisted against the authenticated user.",
+        "A report includes a bounded role-match score, technical questions with intent and model answers, behavioural questions with intent and model answers, skill gaps classified by severity, and a day-wise preparation plan.",
+        "The platform also supports account registration and login, protected report access, PDF resume processing, and ATS-oriented PDF export using generated HTML and Puppeteer.",
+        "The project is deliberately positioned as a preparation and feedback workspace—not as a tool that guarantees interviews or bypasses an ATS.",
+      ],
+      highlights: [
+        "Resume PDF upload and text extraction using pdf-parse",
+        "Role-specific interview preparation reports generated with Gemini",
+        "Technical and behavioural question banks with explanations and model answers",
+        "Skill-gap analysis with low, medium and high severity",
+        "Day-wise preparation plans and persistent report history",
+        "JWT cookie authentication and user-owned reports",
+        "HTML-to-PDF export using Puppeteer",
+      ],
+      architecture: [
+        "React 19 + Vite frontend",
+        "Node.js 20+ + Express API",
+        "MongoDB with Mongoose models",
+        "Gemini via @google/genai",
+        "Multer PDF upload, pdf-parse extraction and Puppeteer PDF rendering",
+      ],
+      techStack: [
+        "React 19",
+        "Vite 6",
+        "React Router",
+        "Axios",
+        "Node.js 20+",
+        "Express 5",
+        "MongoDB",
+        "Mongoose",
+        "Gemini API",
+        "@google/genai",
+        "bcryptjs",
+        "jsonwebtoken",
+        "cookie-parser",
+        "cors",
+        "Multer",
+        "pdf-parse",
+        "Puppeteer",
+        "dotenv",
+      ],
+      github: "https://github.com/SonamNarula/hirelens-nexus",
+    }),
+
+projectFolder({
       id: 15,
       name: "AcornFolio",
       category: "AI / FinTech",
@@ -209,103 +259,7 @@ const projectFolder = ({
       github: "https://github.com/SonamNarula/AcornFolio"
     }),
 
-    projectFolder({
-      id: 12,
-      name: "Trackify",
-      category: "Productivity / Analytics",
-      description: [
-        "Trackify is a student productivity and placement tracking dashboard built to bring day-to-day preparation into one place: tasks, study hours, DSA questions and placement applications.",
-        "The Task Manager supports priorities, filters and completion states. The Study Tracker records daily study hours and DSA questions and calculates consecutive-day streaks. The Placement Tracker represents application progress through applied, interview, selected and rejected states.",
-        "The Analytics area visualizes study hours, DSA progress, task priorities and placement outcomes through charts. The productivity coach is intentionally rule-based: a pure function reads tasks, study logs and streak data and returns explainable observations. It does not call an LLM or require an AI API key.",
-        "The current implementation uses browser localStorage for application data, so data persists across refreshes in that browser but is not synchronized across devices or isolated per account.",
-      ],
-      highlights: [
-        "Task manager with priority tags, filters and completion states",
-        "Study tracker for hours, DSA questions and consecutive-day streaks",
-        "Placement tracker with applied, interview, selected and rejected stages",
-        "Analytics charts for study, DSA, task priorities and placement outcomes",
-        "Rule-based productivity coach with explainable thresholds",
-        "Light and dark themes",
-        "Firebase Authentication",
-        "LocalStorage persistence in the current implementation",
-      ],
-      architecture: [
-        "React + TypeScript single-page application",
-        "Vite development and production bundling",
-        "App-level state and handlers shared with presentational pages",
-        "useLocalStorage hook for browser persistence",
-        "Firebase Authentication and ProtectedRoute",
-        "Chart.js visualizations and pure-function productivity insights",
-      ],
-      techStack: [
-        "React 18",
-        "TypeScript",
-        "Vite",
-        "React Router",
-        "Chart.js",
-        "Firebase Authentication",
-        "CSS custom properties",
-        "LocalStorage",
-        "Custom React hooks",
-      ],
-      github: "https://github.com/SonamNarula/Trackify-college-minor-project",
-      live: "https://trackify.wasmer.app",
-    }),
-
-
-
-,
-
-
-
-    projectFolder({
-      id: 12,
-      name: "Trackify",
-      category: "Productivity / Analytics",
-      description: [
-        "Trackify is a student productivity and placement tracking dashboard built to bring day-to-day preparation into one place: tasks, study hours, DSA questions and placement applications.",
-        "The Task Manager supports priorities, filters and completion states. The Study Tracker records daily study hours and DSA questions and calculates consecutive-day streaks. The Placement Tracker represents application progress through applied, interview, selected and rejected states.",
-        "The Analytics area visualizes study hours, DSA progress, task priorities and placement outcomes through charts. The productivity coach is intentionally rule-based: a pure function reads tasks, study logs and streak data and returns explainable observations. It does not call an LLM or require an AI API key.",
-        "The current implementation uses browser localStorage for application data, so data persists across refreshes in that browser but is not synchronized across devices or isolated per account.",
-      ],
-      highlights: [
-        "Task manager with priority tags, filters and completion states",
-        "Study tracker for hours, DSA questions and consecutive-day streaks",
-        "Placement tracker with applied, interview, selected and rejected stages",
-        "Analytics charts for study, DSA, task priorities and placement outcomes",
-        "Rule-based productivity coach with explainable thresholds",
-        "Light and dark themes",
-        "Firebase Authentication",
-        "LocalStorage persistence in the current implementation",
-      ],
-      architecture: [
-        "React + TypeScript single-page application",
-        "Vite development and production bundling",
-        "App-level state and handlers shared with presentational pages",
-        "useLocalStorage hook for browser persistence",
-        "Firebase Authentication and ProtectedRoute",
-        "Chart.js visualizations and pure-function productivity insights",
-      ],
-      techStack: [
-        "React 18",
-        "TypeScript",
-        "Vite",
-        "React Router",
-        "Chart.js",
-        "Firebase Authentication",
-        "CSS custom properties",
-        "LocalStorage",
-        "Custom React hooks",
-      ],
-      github: "https://github.com/SonamNarula/Trackify-college-minor-project",
-      live: "https://trackify.wasmer.app",
-    }),
-
-
-
-,
-
-    projectFolder({
+projectFolder({
       id: 14,
       name: "CodeFusion",
       category: "Collaborative Development",
@@ -359,6 +313,50 @@ const projectFolder = ({
       ],
       github: "https://github.com/SonamNarula/CodeFusion-a-collaborative-real-time-code-editor",
     }),
+
+projectFolder({
+      id: 12,
+      name: "Trackify",
+      category: "Productivity / Analytics",
+      description: [
+        "Trackify is a student productivity and placement tracking dashboard built to bring day-to-day preparation into one place: tasks, study hours, DSA questions and placement applications.",
+        "The Task Manager supports priorities, filters and completion states. The Study Tracker records daily study hours and DSA questions and calculates consecutive-day streaks. The Placement Tracker represents application progress through applied, interview, selected and rejected states.",
+        "The Analytics area visualizes study hours, DSA progress, task priorities and placement outcomes through charts. The productivity coach is intentionally rule-based: a pure function reads tasks, study logs and streak data and returns explainable observations. It does not call an LLM or require an AI API key.",
+        "The current implementation uses browser localStorage for application data, so data persists across refreshes in that browser but is not synchronized across devices or isolated per account.",
+      ],
+      highlights: [
+        "Task manager with priority tags, filters and completion states",
+        "Study tracker for hours, DSA questions and consecutive-day streaks",
+        "Placement tracker with applied, interview, selected and rejected stages",
+        "Analytics charts for study, DSA, task priorities and placement outcomes",
+        "Rule-based productivity coach with explainable thresholds",
+        "Light and dark themes",
+        "Firebase Authentication",
+        "LocalStorage persistence in the current implementation",
+      ],
+      architecture: [
+        "React + TypeScript single-page application",
+        "Vite development and production bundling",
+        "App-level state and handlers shared with presentational pages",
+        "useLocalStorage hook for browser persistence",
+        "Firebase Authentication and ProtectedRoute",
+        "Chart.js visualizations and pure-function productivity insights",
+      ],
+      techStack: [
+        "React 18",
+        "TypeScript",
+        "Vite",
+        "React Router",
+        "Chart.js",
+        "Firebase Authentication",
+        "CSS custom properties",
+        "LocalStorage",
+        "Custom React hooks",
+      ],
+      github: "https://github.com/SonamNarula/Trackify-college-minor-project",
+      live: "https://trackify.wasmer.app",
+    }),
+
   ],
 };
 
