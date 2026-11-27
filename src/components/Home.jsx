@@ -16,10 +16,10 @@ const LetterHover = ({ children, className = "" }) => (
 );
 
 const desktopProjects = [
-  { name: "CodeFusion", location: "codefusion" },
-  { name: "AcornFolio", location: "acornfolio" },
-  { name: "HireLens", location: "hirelens" },
   { name: "CardioSense", location: "cardiosense" },
+  { name: "HireLens", location: "hirelens" },
+  { name: "AcornFolio", location: "acornfolio" },
+  { name: "CodeFusion", location: "codefusion" },
 ];
 
 const Home = () => {
